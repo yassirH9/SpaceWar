@@ -36,7 +36,8 @@ public class MasterAchivement implements Serializable {
         this.DESCRIPTION = DESCRIPTION;
     }
 
-    public MasterAchivement(){}
+    public MasterAchivement() {
+    }
 
     public long getID() {
         return ID;

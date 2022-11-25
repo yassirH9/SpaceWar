@@ -16,7 +16,7 @@ public class Achivement implements Serializable {
 //    private Set<Users> usersSet;
     //@NotBlank
     @ManyToOne
-    @JoinColumn(name = "userplid",nullable = false)
+    @JoinColumn(name = "userplid", nullable = false)
     private Users userm;
 
 //    @NotBlank
@@ -39,7 +39,8 @@ public class Achivement implements Serializable {
         this.masterAchivement = masterAchivement;
     }
 
-    public Achivement(){}
+    public Achivement() {
+    }
 
     public long getID() {
         return ID;

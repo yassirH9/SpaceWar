@@ -2,6 +2,7 @@ package com.spacewar.entity.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 public class Ranking implements Serializable {
     @Id
@@ -11,7 +12,7 @@ public class Ranking implements Serializable {
     //@NotBlank
     private int POINTS;
     //relacion con usuario
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_PLID", referencedColumnName = "PLID")
     private Users userplid;
 
@@ -21,7 +22,8 @@ public class Ranking implements Serializable {
         this.userplid = userplid;
     }
 
-    public Ranking(){}
+    public Ranking() {
+    }
 
     public long getID() {
         return ID;

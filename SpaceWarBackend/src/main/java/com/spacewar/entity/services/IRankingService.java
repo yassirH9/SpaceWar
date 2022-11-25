@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface IRankingService {
     public Ranking get(long ID);
+
     public List<Ranking> getAll();
+
     public void post(Ranking ranking);
-    public void put(Ranking ranking,long ID);
+
+    public void put(Ranking ranking, long ID);
+
     public void delete(long ID);
 }

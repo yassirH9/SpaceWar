@@ -14,23 +14,27 @@ public class AchivementController {
     AchivementService archivementService;
 
     @GetMapping("/archivement")
-    public List<Achivement> getAllArchivement(){
+    public List<Achivement> getAllArchivement() {
         return archivementService.getAll();
     }
+
     @GetMapping("/archivement/{id}")
-    public Achivement getArchivement(@PathVariable(value = "id") Long id){
+    public Achivement getArchivement(@PathVariable(value = "id") Long id) {
         return archivementService.get(id);
     }
+
     @PostMapping("/archivement")
-    public void postArchivement(Achivement archivement){
+    public void postArchivement(Achivement archivement) {
         archivementService.post(archivement);
     }
+
     @PutMapping("/archivement/{id}")
-    public void putArchivement(@PathVariable(value = "id") Long id, Achivement archivement){
-        archivementService.put(archivement,id);
+    public void putArchivement(@PathVariable(value = "id") Long id, Achivement archivement) {
+        archivementService.put(archivement, id);
     }
+
     @DeleteMapping("/archivement/{id}")
-    public void deleteArchivement(@PathVariable(value = "id") Long id){
+    public void deleteArchivement(@PathVariable(value = "id") Long id) {
         archivementService.delete(id);
     }
 }

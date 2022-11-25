@@ -15,23 +15,27 @@ public class RankingController {
     private RankingService rankingService;
 
     @GetMapping("/ranking")
-    public List<Ranking> getAllRanking(){
+    public List<Ranking> getAllRanking() {
         return rankingService.getAll();
     }
+
     @GetMapping("/ranking/{id}")
-    public Ranking getRanking(@PathVariable(value = "id") Long id){
+    public Ranking getRanking(@PathVariable(value = "id") Long id) {
         return rankingService.get(id);
     }
+
     @PostMapping("/ranking")
-    public void postRanking(Ranking ranking){
+    public void postRanking(Ranking ranking) {
         rankingService.post(ranking);
     }
+
     @PutMapping("/ranking/{id}")
-    public void putRanking(@PathVariable(value = "id") Long id,Ranking ranking){
-        rankingService.put(ranking,id);
+    public void putRanking(@PathVariable(value = "id") Long id, Ranking ranking) {
+        rankingService.put(ranking, id);
     }
+
     @DeleteMapping("/ranking/{id}")
-    public void deleteRanking(@PathVariable(value = "id") Long id){
+    public void deleteRanking(@PathVariable(value = "id") Long id) {
         rankingService.delete(id);
     }
 }

@@ -12,24 +12,29 @@ import java.util.List;
 public class UsersController {
     @Autowired
     IUserService userService;
+
     @GetMapping("/user")
-    public List<Users> getAllUsers(){
+    public List<Users> getAllUsers() {
         return userService.getAll();
     }
+
     @GetMapping("/user/{plid}")
-    public Users getUser(@PathVariable(value = "plid") Long PLID){
+    public Users getUser(@PathVariable(value = "plid") Long PLID) {
         return userService.get(PLID);
     }
+
     @PostMapping("/user")
-    public void postUser(Users user){
+    public void postUser(Users user) {
         userService.post(user);
     }
+
     @PutMapping("/user/{PLID}")
-    public void putUser(@PathVariable(value = "PLID") Long PLID, Users user){
-        userService.put(user,PLID);
+    public void putUser(@PathVariable(value = "PLID") Long PLID, Users user) {
+        userService.put(user, PLID);
     }
+
     @DeleteMapping("/user/{PLID}")
-    public void deleteUser(@PathVariable(value = "PLID") Long PLID){
+    public void deleteUser(@PathVariable(value = "PLID") Long PLID) {
         userService.delete(PLID);
     }
 }

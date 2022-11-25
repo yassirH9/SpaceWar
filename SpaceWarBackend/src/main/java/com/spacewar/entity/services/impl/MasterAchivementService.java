@@ -12,6 +12,7 @@ import java.util.List;
 public class MasterAchivementService implements IMasterAchivementService {
     @Autowired
     private IMasterAchivementDao masterArchivementDao;
+
     @Override
     public MasterAchivement get(long ID) {
         return masterArchivementDao.findById(ID).get();
@@ -29,7 +30,7 @@ public class MasterAchivementService implements IMasterAchivementService {
 
     @Override
     public void put(MasterAchivement masterarchivement, long ID) {
-        masterArchivementDao.findById(ID).ifPresent((x)->{
+        masterArchivementDao.findById(ID).ifPresent((x) -> {
             masterarchivement.setID(ID);
             masterArchivementDao.save(masterarchivement);
         });

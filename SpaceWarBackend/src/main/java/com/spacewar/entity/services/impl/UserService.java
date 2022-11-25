@@ -12,6 +12,7 @@ import java.util.List;
 public class UserService implements IUserService {
     @Autowired
     private IUserDao userDao;
+
     @Override
     public Users get(long PLID) {
         return userDao.findById(PLID).get();
@@ -29,7 +30,7 @@ public class UserService implements IUserService {
 
     @Override
     public void put(Users user, long PLID) {
-        userDao.findById(PLID).ifPresent((x)->{
+        userDao.findById(PLID).ifPresent((x) -> {
             user.setPLID(PLID);
             userDao.save(user);
         });

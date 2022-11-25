@@ -13,6 +13,7 @@ public class AchivementService implements IAchivementService {
 
     @Autowired
     private IAchivementDao archivementDao;
+
     @Override
     public Achivement get(long ID) {
         return archivementDao.findById(ID).get();
@@ -30,7 +31,7 @@ public class AchivementService implements IAchivementService {
 
     @Override
     public void put(Achivement archivement, long ID) {
-        archivementDao.findById(ID).ifPresent((x)->{
+        archivementDao.findById(ID).ifPresent((x) -> {
             archivement.setID(ID);
             archivementDao.save(archivement);
         });

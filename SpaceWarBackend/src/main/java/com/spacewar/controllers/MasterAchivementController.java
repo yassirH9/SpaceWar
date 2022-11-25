@@ -14,23 +14,27 @@ public class MasterAchivementController {
     MasterAchivementService masterArchivementService;
 
     @GetMapping("/masterachive")
-    public List<MasterAchivement> getAllMasterArchivement(){
+    public List<MasterAchivement> getAllMasterArchivement() {
         return masterArchivementService.getAll();
     }
+
     @GetMapping("/masterachive/{id}")
-    public MasterAchivement getMasterArchivement(@PathVariable(value = "id") Long id){
+    public MasterAchivement getMasterArchivement(@PathVariable(value = "id") Long id) {
         return masterArchivementService.get(id);
     }
+
     @PostMapping("/masterachive")
-    public void postMasterArchivement(MasterAchivement masterArchivement){
+    public void postMasterArchivement(MasterAchivement masterArchivement) {
         masterArchivementService.post(masterArchivement);
     }
+
     @PutMapping("/masterachive/{id}")
-    public void putMasterArchivement(@PathVariable(value = "id") Long id,MasterAchivement masterArchivement){
-        masterArchivementService.put(masterArchivement,id);
+    public void putMasterArchivement(@PathVariable(value = "id") Long id, MasterAchivement masterArchivement) {
+        masterArchivementService.put(masterArchivement, id);
     }
+
     @DeleteMapping("/masterachive/{id}")
-    public void deleteMasterArchivement(@PathVariable(value = "id") Long id){
+    public void deleteMasterArchivement(@PathVariable(value = "id") Long id) {
         masterArchivementService.delete(id);
     }
 }

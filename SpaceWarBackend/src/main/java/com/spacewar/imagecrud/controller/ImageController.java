@@ -4,7 +4,6 @@ package com.spacewar.imagecrud.controller;
 import com.spacewar.imagecrud.entity.Image;
 import com.spacewar.imagecrud.repository.ImageRepository;
 import com.spacewar.imagecrud.util.ImageUtility;
-import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,11 +23,11 @@ public class ImageController {
     ImageRepository imageRepository;
 
     @PostMapping("/upload/image")
-    public ResponseEntity<ImageResponse> uplaodImage(@RequestParam("image") MultipartFile file,@RequestParam("user") long plid)
+    public ResponseEntity<ImageResponse> uplaodImage(@RequestParam("image") MultipartFile file, @RequestParam("user") long plid)
             throws IOException {
         //conversion de nombre original a id unico
-        String randomID= UUID.randomUUID().toString();
-        String filename = randomID.concat(randomID+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
+        String randomID = UUID.randomUUID().toString();
+        String filename = randomID.concat(randomID + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
 
         imageRepository.save(Image.builder()
                 .name(filename)
@@ -62,6 +61,7 @@ public class ImageController {
                 .contentType(MediaType.valueOf(dbImage.get().getType()))
                 .body(ImageUtility.decompressImage(dbImage.get().getImage()));
     }
+
     @GetMapping(path = {"/get/image/user/{plid}"})
     public ResponseEntity<byte[]> getImageByPLID(@PathVariable("plid") long PLID) throws IOException {
 
@@ -74,18 +74,18 @@ public class ImageController {
     }
 
     @PutMapping("/put/image/")
-    public ResponseEntity<ImageResponse> putImage(@RequestParam("image") MultipartFile file,@RequestParam("user") long plid)
-            throws IOException{
+    public ResponseEntity<ImageResponse> putImage(@RequestParam("image") MultipartFile file, @RequestParam("user") long plid)
+            throws IOException {
 
         //conversion de nombre original a id unico
-        String randomID= UUID.randomUUID().toString();
-        String filename = randomID.concat(randomID+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
+        String randomID = UUID.randomUUID().toString();
+        String filename = randomID.concat(randomID + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
 
         //buscar elemento y sobrescribir en db
         byte[] image;
         image = file.getBytes();
         long imagedbid = imageRepository.findByPlid(plid).get().getId();
-        imageRepository.findByPlid(plid).ifPresent((x)->{
+        imageRepository.findByPlid(plid).ifPresent((x) -> {
             imageRepository.save(
                     Image.builder()
                             .id(imagedbid)
@@ -100,19 +100,19 @@ public class ImageController {
     }
 
     @DeleteMapping("/del/image/{plid}")
-    public ResponseEntity<ImageResponse> deleteImage(@PathVariable(value = "plid") long plid){
+    public ResponseEntity<ImageResponse> deleteImage(@PathVariable(value = "plid") long plid) {
 //        imageRepository.findByPlid(plid).ifPresent((x)->{
 //            imageRepository.deleteByPlid(plid);
 //        });
         //manejo de errores
-        try{
-            imageRepository.findByPlid(plid).ifPresent((x)->{
+        try {
+            imageRepository.findByPlid(plid).ifPresent((x) -> {
                 long id = x.getId();
                 imageRepository.deleteById(id);
             });
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ImageResponse("Image deleted successfully"));
-        }catch(Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ImageResponse("Image was not deleted"));
         }

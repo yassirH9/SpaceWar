@@ -12,6 +12,7 @@ import java.util.List;
 public class RankingService implements IRankingService {
     @Autowired
     private IRankingDao rankingDao;
+
     @Override
     public Ranking get(long ID) {
         return rankingDao.findById(ID).get();
@@ -29,7 +30,7 @@ public class RankingService implements IRankingService {
 
     @Override
     public void put(Ranking ranking, long ID) {
-        rankingDao.findById(ID).ifPresent((x)->{
+        rankingDao.findById(ID).ifPresent((x) -> {
             ranking.setID(ID);
             rankingDao.save(ranking);
         });

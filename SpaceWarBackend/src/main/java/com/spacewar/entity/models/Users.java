@@ -40,7 +40,7 @@ public class Users implements Serializable {
 
     //Roles de usuario
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(  name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Rol> roles = new HashSet<>();
@@ -52,7 +52,8 @@ public class Users implements Serializable {
         this.NICKNAME = NICKNAME;
     }
 
-    public Users(){}
+    public Users() {
+    }
 
     public long getPLID() {
         return PLID;
