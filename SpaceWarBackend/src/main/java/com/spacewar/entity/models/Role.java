@@ -3,20 +3,21 @@ package com.spacewar.entity.models;
 import javax.persistence.*;
 
 @Entity
-public class Rol {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERol name;
+    private ERole name;
 
-    public Rol() {
+    public Role() {
 
     }
 
-    public Rol(ERol name) {
+    public Role(ERole name) {
         this.name = name;
     }
 
@@ -28,11 +29,11 @@ public class Rol {
         this.id = id;
     }
 
-    public ERol getName() {
+    public ERole getName() {
         return name;
     }
 
-    public void setName(ERol name) {
+    public void setName(ERole name) {
         this.name = name;
     }
 }

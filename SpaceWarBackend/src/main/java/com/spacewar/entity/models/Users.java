@@ -17,13 +17,13 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long PLID;
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 50)
     String MAIL;
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 120)
     String PSWD;
     @NotBlank
-    @Size(max = 35)
+    @Size(max = 20)
     String NICKNAME;
 
     //relacion con ranking
@@ -43,10 +43,10 @@ public class Users implements Serializable {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-    public Users(long PLID, String MAIL, String PSWD, String NICKNAME) {
-        this.PLID = PLID;
+    public Users(String MAIL, String PSWD, String NICKNAME) {
+        //this.PLID = PLID;
         this.MAIL = MAIL;
         this.PSWD = PSWD;
         this.NICKNAME = NICKNAME;
@@ -79,7 +79,7 @@ public class Users implements Serializable {
         return achivements;
     }
 
-    public Set<Rol> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -107,7 +107,7 @@ public class Users implements Serializable {
         this.achivements = achivements;
     }
 
-    public void setRoles(Set<Rol> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 }
