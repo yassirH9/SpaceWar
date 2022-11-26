@@ -2,6 +2,7 @@ package com.spacewar.controllers;
 
 import com.spacewar.entity.models.Ranking;
 import com.spacewar.entity.services.impl.RankingService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Api(tags = "rankings")
 @CrossOrigin(value = "*")
 public class RankingController {
 
