@@ -1,5 +1,7 @@
 package com.spacewar.controllers;
 
+import com.spacewar.entity.models.ERole;
+import com.spacewar.entity.models.Role;
 import com.spacewar.entity.models.Users;
 import com.spacewar.entity.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(value = "*")
