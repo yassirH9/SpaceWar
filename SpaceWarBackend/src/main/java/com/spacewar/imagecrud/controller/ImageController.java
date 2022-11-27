@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ public class ImageController {
     ImageRepository imageRepository;
 
     @PostMapping("/upload/image")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public ResponseEntity<ImageResponse> uplaodImage(@RequestParam("image") MultipartFile file, @RequestParam("user") long plid)
             throws IOException {
         //conversion de nombre original a id unico
@@ -40,6 +42,7 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/get/image/info/{name}"})
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public Image getImageDetails(@PathVariable("name") String name) throws IOException {
 
         final Optional<Image> dbImage = imageRepository.findByName(name);
@@ -52,6 +55,7 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/get/image/{name}"})
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public ResponseEntity<byte[]> getImage(@PathVariable("name") String name) throws IOException {
 
         final Optional<Image> dbImage = imageRepository.findByName(name);
@@ -63,6 +67,7 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/get/image/user/{plid}"})
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public ResponseEntity<byte[]> getImageByPLID(@PathVariable("plid") long PLID) throws IOException {
 
         final Optional<Image> dbImage = imageRepository.findByPlid(PLID);
@@ -74,6 +79,7 @@ public class ImageController {
     }
 
     @PutMapping("/put/image/")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public ResponseEntity<ImageResponse> putImage(@RequestParam("image") MultipartFile file, @RequestParam("user") long plid)
             throws IOException {
 
@@ -100,6 +106,7 @@ public class ImageController {
     }
 
     @DeleteMapping("/del/image/{plid}")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public ResponseEntity<ImageResponse> deleteImage(@PathVariable(value = "plid") long plid) {
 //        imageRepository.findByPlid(plid).ifPresent((x)->{
 //            imageRepository.deleteByPlid(plid);
