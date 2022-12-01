@@ -1,0 +1,21 @@
+<div class="main-container">
+    <div class="tittle">
+        <h1>Login</h1>
+        <h1>or</h1>
+        <h1>Register</h1>
+    </div>
+    <div class="inner-container">
+        <div>
+            <button (click)="goToLogin()">
+                <img [src]="LoginImagePath" alt="login icon">
+                <h2>Login</h2>
+            </button>
+        </div>
+        <div>
+            <button (click)="goToRegister()">
+                <img [src]="RegisterImagePath" alt="register icon">
+                <h2>Register</h2>
+            </button>
+        </div>
+    </div>
+</div>

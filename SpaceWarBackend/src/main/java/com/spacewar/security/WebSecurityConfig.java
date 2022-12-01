@@ -41,8 +41,9 @@ public class WebSecurityConfig {
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/api/auth/**"
-            // other public endpoints of your API may be appended to this array
+            "/api/auth/**",
+            // -- API White list
+            "/ranking"
     };
     @Autowired
     UserDetailsServiceImpl userDetailsService;

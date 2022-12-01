@@ -1,0 +1,17 @@
+<div class="main-container">
+    <h1>Register</h1>
+    <form [formGroup]="register">
+        <div>
+            <input id="mail" type="email" name="mail" placeholder="Example@example.com" formControlName="mail">
+        </div>
+        <div>
+            <input id="nickname" type="text" name="nickname" placeholder="Nickname" formControlName="nickname">
+        </div>
+        <div>
+            <input id="password" type="password" name="password" placeholder="Password" formControlName="password">
+        </div>
+        <div>
+            <button (click)="onRegister()">Register</button>
+        </div>
+    </form>
+</div>

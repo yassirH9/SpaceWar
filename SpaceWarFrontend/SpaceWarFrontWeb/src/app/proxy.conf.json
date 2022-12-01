@@ -1,0 +1,8 @@
+{
+    "/api/auth/*":{
+        "target":"http://localhots:8080",
+        "secure": false,
+        "logLevel": "debug"
+    }
+    
+}

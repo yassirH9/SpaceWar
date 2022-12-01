@@ -1,7 +1,0 @@
-{
-  "name": "FrontWeb",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

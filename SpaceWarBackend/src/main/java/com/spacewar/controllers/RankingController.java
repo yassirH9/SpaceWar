@@ -16,7 +16,7 @@ public class RankingController {
 
     @Autowired
     private RankingService rankingService;
-    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
+    //@PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     @GetMapping("/ranking")
     public List<Ranking> getAllRanking() {
         return rankingService.getAll();
