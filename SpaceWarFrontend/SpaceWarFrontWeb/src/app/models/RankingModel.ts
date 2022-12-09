@@ -1,5 +1,6 @@
+import { ILoginResponse } from "./ILoginResponse";
+
 export interface RankingModel{
-    plid:number;
-    nickname:string;
+    userplid:ILoginResponse;
     points:number;
 }

@@ -12,14 +12,11 @@ import { RankingModel } from '../models/RankingModel';
 })
 
 export class EndpointServiceService {
-  //definicion del endpoint
-  endpoint = "localhost:8080/";
-
   //instancia del modulo httpclient
   constructor(private HttpClient: HttpClient) { }
 
   getAllRanking(){
-      return this.HttpClient.get<Array<RankingModel>>(this.endpoint+"ranking");
+      return this.HttpClient.get<Array<RankingModel>>("/api/ranking");
   }
 
 }

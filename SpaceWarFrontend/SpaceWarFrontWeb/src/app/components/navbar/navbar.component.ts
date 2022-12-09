@@ -7,7 +7,7 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+ 
   constructor(private cookie:CookieService) { }
   menuicon = "../../../assets/images/icons/menu.png"
   imgsrc = "../../../assets/images/icons/user-placeholder.png"
@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit {
       //hacer que el boton dirija a la pestaña del usuario
       //cambiar css para que la imagen se vea circular
       this.imgsrc = "";
-      
     }
   }
 

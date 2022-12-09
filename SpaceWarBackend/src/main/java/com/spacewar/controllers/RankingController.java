@@ -12,6 +12,8 @@ import java.util.List;
 @RestController
 @Api(tags = "rankings")
 @CrossOrigin(value = "*")
+//TEST cambio en endpoint para evitar CORSq
+@RequestMapping("/api")
 public class RankingController {
 
     @Autowired

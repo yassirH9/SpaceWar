@@ -4,7 +4,7 @@ import { ILogin } from 'src/app/models/ILogin';
 import { ILoginResponse } from 'src/app/models/ILoginResponse';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 //cookie
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-loginform',
@@ -13,29 +13,39 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class LoginformComponent implements OnInit {
 
-  constructor(private auth:AuthServiceService,private cookie:CookieService) { }
+  constructor(private auth: AuthServiceService, private cookie: CookieService) { }
 
-  
+
   //loginformw
   login = new FormGroup({
     nickname: new FormControl(''),
     password: new FormControl(''),
   })
 
+  //TOKEN
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  //TOKEN
+
   ngOnInit(): void {
+
   }
 
-  onLogin(){
+  onLogin() {
     const userdata: ILogin = {
       nickname: btoa(this.login.value.nickname!),
       pswd: btoa(this.login.value.password!),
     }
-    this.auth.login(userdata).subscribe((data)=>{
-      this.cookie.set('userToken',data.accessToken);
+    this.auth.login(userdata).subscribe((data) => {
+      this.cookie.set('userToken', data.accessToken);
       //console.log(data.nickname+":"+data.accessToken+":"+data.mail+":"+data.plid+":"+data.rol);
     });
-
     window.location.href="/ranking";
     //alert(this.login.get('nickname')?.value+":"+this.login.get('password')?.value);
+  }
+  reloadPage(){
+    window.location.reload();
   }
 }

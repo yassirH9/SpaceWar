@@ -15,6 +15,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin(value = "*")
+@RequestMapping("/api")
 public class UsersController {
     @Autowired
     IUserService userService;

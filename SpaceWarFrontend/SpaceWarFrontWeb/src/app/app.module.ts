@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterformComponent } from './page/registerform/registerform.component';
 import { TypeauthselectorComponent } from './page/typeauthselector/typeauthselector.component';
+import { RankingComponent } from './page/ranking/ranking.component';
+import { StatisticsComponent } from './page/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { TypeauthselectorComponent } from './page/typeauthselector/typeauthselec
     LoginformComponent,
     RegisterformComponent,
     TypeauthselectorComponent,
+    RankingComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,7 @@ import java.util.UUID;
 @RestController
 //@CrossOrigin(origins = "http://localhost:8082") open for specific port
 @CrossOrigin() // open for all ports
+@RequestMapping("/api")
 public class ImageController {
     @Autowired
     ImageRepository imageRepository;
