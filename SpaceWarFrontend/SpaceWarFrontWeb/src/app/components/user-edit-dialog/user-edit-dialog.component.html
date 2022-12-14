@@ -1,0 +1,27 @@
+<div class="modal-container">
+    <h1>User Edit</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>PLID</label>
+                <input id="id" type="text" name="id" placeholder="ID" formControlName="plid" readonly>
+            </div>
+            <div>
+                <label>Email</label>
+                <input id="mail" type="text" name="mail" placeholder="Mail" formControlName="email">
+            </div>
+            <div>
+                <label>Nickname</label>
+                <input id="nickname" type="text" name="nickname" placeholder="Nickname" formControlName="nickname">
+            </div>
+            <div>
+                <label>Pasword</label>
+                <input id="password" type="text" name="password" placeholder="password" formControlName="password">
+            </div>
+        </form>
+        <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>

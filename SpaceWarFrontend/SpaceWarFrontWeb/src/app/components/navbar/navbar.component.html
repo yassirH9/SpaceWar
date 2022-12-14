@@ -1,21 +1,21 @@
 <div class="topnav" id="myTopnav">
     <button (click)="openmenu()"><img  [src]="menuicon" alt="menu icon" class="menuicon"></button>
     <nav>
-        <a [href]="ranking" class="active">Ranking</a>
-        <a [href]="statistics" class="nonactive">Statistics</a>
-        <a [href]="achivement" class="nonactive">Achivements</a>
-        <a [href]="download" class="nonactive">Download</a>
-        <a [href]="admin" class="nonactive">Admin Zone</a>
+        <a (click)="goRanking()" class="active">Ranking</a>
+        <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goStatistics()" class="active">Statistics</a>
+        <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goAchivement()" class="active">Achivements</a>
+        <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goDownload()"class="active">Download</a>
+        <a *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="goAdminZone()" class="active">Admin Zone</a>
     </nav>
     <div>
         <!-- <a [href]="select" class="user"><img [src]=imgsrc alt="user image" class="userimg"></a> -->
-        <a (click)="onUser()" class="user"><img [src]=imgsrc alt="user image" class="userimg"></a>
+        <a (click)="onUser()" class="user"><img [src]=thumbnail alt="user image" class="userimg" onerror="this.src='../../../assets/images/icons/user-placeholder.png'"></a>
     </div>
 </div>
 <div class="hammenu" id="hammenu">
-    <a [href]="ranking" class="active">Ranking</a>
-    <a [href]="statistics" class="nonactive">Statistics</a>
-    <a [href]="achivement" class="nonactive">Achivements</a>
-    <a [href]="download" class="nonactive">Download</a>
-    <a [href]="admin" class="nonactive">Admin Zone</a>
+    <a (click)="goRanking()" class="active">Ranking</a>
+    <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goStatistics()" class="active">Statistics</a>
+    <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goAchivement()" class="active">Achivements</a>
+    <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goDownload()" class="active">Download</a>
+    <a *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="goAdminZone()" class="active">Admin Zone</a>
 </div>

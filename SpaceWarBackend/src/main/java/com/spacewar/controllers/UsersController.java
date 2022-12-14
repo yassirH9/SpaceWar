@@ -3,6 +3,7 @@ package com.spacewar.controllers;
 import com.spacewar.entity.models.ERole;
 import com.spacewar.entity.models.Role;
 import com.spacewar.entity.models.Users;
+import com.spacewar.entity.repository.RoleRepository;
 import com.spacewar.entity.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,8 +45,20 @@ public class UsersController {
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void putUser(@PathVariable(value = "PLID") Long PLID, Users user) {
         //encriptado de la contraseña que se ha modificado
+
+        //la contraseña ya viene con bcript desde el put frontend
         String pswdEncrip = encoder.encode(user.getPSWD());
         user.setPSWD(pswdEncrip);
+
+        //Asignacion de rol
+        RoleRepository roleRepository;
+        Set<Role> roles = new HashSet<>();
+
+        Role userRole = new Role(ERole.ROLE_USER);
+        roles.add(userRole);
+        user.setRoles(roles);
+
+        //guardar usuario
         userService.put(user, PLID);
     }
 

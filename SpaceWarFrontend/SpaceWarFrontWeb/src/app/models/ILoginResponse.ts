@@ -4,4 +4,5 @@ export interface ILoginResponse{
     mail:string;
     accessToken:string;
     rol:string;
+    pswd:string;
 }

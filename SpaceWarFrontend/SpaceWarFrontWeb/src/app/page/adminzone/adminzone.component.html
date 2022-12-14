@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="tittle">
+        <h1>Administration panel</h1>
+    </div>
+    <div class="inner-container">
+        <div class="section">
+            <div class="overflow">
+                <div class="divTable">
+                    <div class="headRow">
+                        <div class="divCell">User ID</div>
+                        <div class="divCell">Nickname</div>
+                        <div class="divCell">Email</div>
+                        <div class="divCell">Actions</div>
+                    </div>
+                    <div class="divRow" *ngFor="let x of users">
+                        <div class="divCell">{{x.plid}}</div>
+                        <div class="divCell">{{x.nickname}}</div>
+                        <div class="divCell">{{x.mail}}</div>
+                        <div class="divCell">
+                            <button class="del" (click)="delUser(x.plid)">Delete</button>
+                            <button class="edit" (click)="putUser(x.plid,x.mail,x.nickname,x.pswd)">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Ranking Section</h2>
+            <a>test</a>
+        </div>
+        <div class="section-2">
+            <h2>Achivement Section</h2>
+            <a>test</a>
+        </div>
+        <div class="section-2">
+            <h2>Master Ach. Section</h2>
+            <a>test</a>
+        </div>
+    </div>
+</div>
