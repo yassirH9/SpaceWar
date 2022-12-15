@@ -1,0 +1,19 @@
+<div class="modal-container">
+    <h1>Master Achivement Create</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>Name</label>
+                <input id="name" type="text" name="name" placeholder="Name" formControlName="name">
+            </div>
+            <div>
+                <label>Description</label>
+                <input id="description" type="text" name="description" placeholder="Description" formControlName="description">
+            </div>
+        </form>
+        <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>

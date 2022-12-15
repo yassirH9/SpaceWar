@@ -18,6 +18,13 @@ import { DownloadComponent } from './page/download/download.component';
 import { AdminzoneComponent } from './page/adminzone/adminzone.component';
 import { UserEditDialogComponent } from './components/user-edit-dialog/user-edit-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { RankingEditDialogComponent } from './components/ranking-edit-dialog/ranking-edit-dialog.component';
+import { RankingNewDialogComponent } from './components/ranking-new-dialog/ranking-new-dialog.component';
+import { MasterAchEditDialogComponent } from './components/master-ach-edit-dialog/master-ach-edit-dialog.component';
+import { MasterAchNewDialogComponent } from './components/master-ach-new-dialog/master-ach-new-dialog.component';
+import { AchivementEditDialogComponent } from './components/achivement-edit-dialog/achivement-edit-dialog.component';
+import { AchivementNewDialogComponent } from './components/achivement-new-dialog/achivement-new-dialog.component';
+import { AchivementComponent } from './page/achivement/achivement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +37,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     DownloadComponent,
     AdminzoneComponent,
     UserEditDialogComponent,
+    RankingEditDialogComponent,
+    RankingNewDialogComponent,
+    MasterAchEditDialogComponent,
+    MasterAchNewDialogComponent,
+    AchivementEditDialogComponent,
+    AchivementNewDialogComponent,
+    AchivementComponent,
   ],
   imports: [
     BrowserModule,

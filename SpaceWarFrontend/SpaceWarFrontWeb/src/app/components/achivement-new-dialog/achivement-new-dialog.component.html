@@ -1,0 +1,19 @@
+<div class="modal-container">
+    <h1>Achivement Create</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>Master Ach. ID</label>
+                <input id="id" type="text" name="id" placeholder="ID" formControlName="id">
+            </div>
+            <div>
+                <label>User PLID</label>
+                <input id="plid" type="text" name="plid" placeholder="PLID" formControlName="plid">
+            </div>
+        </form>
+        <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>

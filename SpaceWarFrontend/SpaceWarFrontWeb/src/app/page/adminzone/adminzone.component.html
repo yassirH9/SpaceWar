@@ -4,6 +4,7 @@
     </div>
     <div class="inner-container">
         <div class="section">
+            <h2>User Section</h2>
             <div class="overflow">
                 <div class="divTable">
                     <div class="headRow">
@@ -26,15 +27,75 @@
         </div>
         <div class="section">
             <h2>Ranking Section</h2>
-            <a>test</a>
+            <button (click)="postRanking()" class="new">New</button>
+            <div class="overflow">
+                <div class="divTable">
+                    <div class="headRow">
+                        <div class="divCell">User ID</div>
+                        <div class="divCell">Nickname</div>
+                        <div class="divCell">Points</div>
+                        <div class="divCell">Actions</div>
+                    </div>
+                    <div class="divRow" *ngFor="let x of ranking">
+                        <div class="divCell">{{x.userplid.plid}}</div>
+                        <div class="divCell">{{x.userplid.nickname}}</div>
+                        <div class="divCell">{{x.points}}</div>
+                        <div class="divCell">
+                            <button (click)="delRanking(x.id)" class="del">Delete</button>
+                            <button (click)="putRanking(x.userplid.plid,x.userplid.nickname,x.points,x.id)" class="edit">Edit</button>
+                            <button (click)="resetRanking(x.id,x.userplid.plid)" class="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="section-2">
             <h2>Achivement Section</h2>
-            <a>test</a>
+            <button (click)="postAchivement()" class="new">New</button>
+            <div class="overflow">
+                <div class="divTable">
+                    <div class="headRow">
+                        <div class="divCell">User PLID</div>
+                        <div class="divCell">User nickname</div>
+                        <div class="divCell">Achivement name</div>
+                        <div class="divCell">Achivement description</div>
+                        <div class="divCell">Actions</div>
+                    </div>
+                    <div class="divRow" *ngFor="let x of achivement">
+                        <div class="divCell">{{x.userm.plid}}</div>
+                        <div class="divCell">{{x.userm.nickname}}</div>
+                        <div class="divCell">{{x.masterAchivement.name}}</div>
+                        <div class="divCell">{{x.masterAchivement.description}}</div>
+                        <div class="divCell">
+                            <button (click)="delAchivement(x.id)" class="del">Delete</button>
+                            <button (click)="putAchivement(x.userm.plid,x.masterAchivement.id,x.id)" class="edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="section-2">
             <h2>Master Ach. Section</h2>
-            <a>test</a>
+            <button (click)="postMastAchivement()" class="new">New</button>
+            <div class="overflow">
+                <div class="divTable">
+                    <div class="headRow">
+                        <div class="divCell">ID</div>
+                        <div class="divCell">Name</div>
+                        <div class="divCell">Description</div>
+                        <div class="divCell">Actions</div>
+                    </div>
+                    <div class="divRow" *ngFor="let x of masterAchivement">
+                        <div class="divCell">{{x.id}}</div>
+                        <div class="divCell">{{x.name}}</div>
+                        <div class="divCell">{{x.description}}</div>
+                        <div class="divCell">
+                            <button (click)="delMastAchivement(x.id)" class="del">Delete</button>
+                            <button (click)="putMastAchivement(x.id,x.name,x.description)" class="edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

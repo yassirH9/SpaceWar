@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AchivementComponent } from './page/achivement/achivement.component';
 import { AdminzoneComponent } from './page/adminzone/adminzone.component';
 import { DownloadComponent } from './page/download/download.component';
 import { LoginformComponent } from './page/loginform/loginform.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:"statistics", component:StatisticsComponent},
   {path:"download",component:DownloadComponent},
   {path:"adminzone",component:AdminzoneComponent},
+  {path:"achivement",component:AchivementComponent},
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RoleserviceService } from './service/RolService/roleservice.service';
 import { StorageserviceService } from './service/TokenService/storageservice.service';
 
 @Component({
@@ -9,11 +10,16 @@ import { StorageserviceService } from './service/TokenService/storageservice.ser
 export class AppComponent {
   title = 'SpaceWarFrontWeb';
   constructor(
-    private storage:StorageserviceService,
-    ){}
-  //al iniciar la app web comprueba que no haya ningun usuario en el sesion storage o el local storage de residuo
+    private storage: StorageserviceService,
+    private role: RoleserviceService,
+  ) { }
   ngOnInit(): void {
-    //comentado para test de endpoint
-    //this.storage.signOut();
+  }
+  //al cerrar la web se elimina todos los datos de sesion del usuario
+  ngOnDestroy(): void {
+    if (this.role.isLoggedIn() == true) {
+      this.storage.signOut();
+      this.role.logout();
+    }
   }
 }

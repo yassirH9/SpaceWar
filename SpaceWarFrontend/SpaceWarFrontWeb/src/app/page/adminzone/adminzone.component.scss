@@ -14,10 +14,10 @@
 }
 
 .inner-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    
     h2 {
         text-align-last: center;
         text-decoration: underline;
@@ -41,73 +41,115 @@
         margin-right: 10em;
         // margin-top: 5em;
         // border: 1px solid black;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
     }
-    
-    input{
+
+    input {
         background-color: rgba(0, 0, 0, 0);
         border: 0;
         padding-top: 1em;
         padding-bottom: 1em;
         text-align: center;
     }
-}   
-.overflow{
+}
+
+.overflow {
     max-height: 200px;
     overflow-y: scroll;
-    border:1px solid  #666666;
-}
-.divTable
-{
-    display:  table;
-
-    width:auto;
-    background-color:#eee;
-    
-    border-spacing:5px;/*cellspacing:poor IE support for  this*/
-   /* border-collapse:separate;*/
+    border: 1px solid #666666;
 }
 
-.divRow
-{
-   display:table-row;
-   width:auto;
+.divTable {
+    display: table;
+
+    width: auto;
+    background-color: #eee;
+
+    border-spacing: 5px;
+    /*cellspacing:poor IE support for  this*/
+    /* border-collapse:separate;*/
 }
 
-.divCell
-{
-    float:left;/*fix for  buggy browsers*/
-    display:table-column;
-    width:200px;
-    background-color:#ccc;
+.divRow {
+    display: table-row;
+    width: auto;
+}
 
-    .del{
+.divCell {
+    float: left;
+    /*fix for  buggy browsers*/
+    display: table-column;
+    width: 200px;
+    background-color: #ccc;
+
+    .del {
         max-height: 18px;
         background-color: rgba(255, 0, 0, 0.5);
         color: white;
         border: .5px solid rgba(0, 0, 0, 0.5);
     }
-    .del:hover{
+
+    .del:hover {
         background-color: rgba(184, 0, 0, 0.7);
     }
-    .edit{
+
+    .edit {
         max-height: 18px;
         background-color: rgba(0, 128, 0, 0.5);
         color: white;
         border: 0;
         border: .5px solid rgba(0, 0, 0, 0.5);
-        
+
         margin-left: .5em;
     }
-    .edit:hover{
+
+    .edit:hover {
         background-color: rgba(0, 128, 0, 0.7);
     }
+
+    .reset {
+        max-height: 18px;
+        background-color: rgba(255, 0, 0, 0.5);
+        color: white;
+        border: 0;
+        border: .5px solid rgba(0, 0, 0, 0.5);
+        margin-left: .5em;
+    }
+    .reset:hover {
+        background-color: rgba(184, 0, 0, 0.7);
+    }
+}
+.new{
+    max-height: 25px;
+    width: 100px;
+    margin-bottom: .5em;
+
+    background-color: rgba(0, 0, 0, 0.678);
+    color: black;
+    color: white;
+    border: 0;
+    border: .5px solid rgba(0, 0, 0, 0.959);
+    margin-left: .5em;
 }
 
 @media screen and (min-width:800px) {
     .inner-container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        flex-wrap: wrap;
+        // justify-content: center;
+        align-items: center;
+        align-self: center;
 
+    }
+    .section{
+        margin: 0 auto;
+    }
+    .section-2{
+        margin: 0 auto;
     }
 }

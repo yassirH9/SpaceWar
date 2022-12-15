@@ -26,7 +26,7 @@ public class MasterAchivement implements Serializable {
 //    @JsonBackReference("mas terArchivement")
 //    private Set<Archivement> archivementM;
 
-    @OneToMany(mappedBy = "masterAchivement")
+    @OneToMany(mappedBy = "masterAchivement",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Achivement> archivementList;
 

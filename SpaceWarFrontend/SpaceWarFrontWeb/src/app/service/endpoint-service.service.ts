@@ -8,6 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { RankingModel } from '../models/RankingModel';
 import { ILoginResponse } from '../models/ILoginResponse';
 import { IUserSimple } from '../models/IUserSimple';
+import { MasterAchivement } from '../models/MasterAchivement';
+import { Achivement } from '../models/Achivement';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +27,28 @@ export class EndpointServiceService {
   getRanking(plid: string) {
     return this.HttpClient.get<RankingModel>("/api/ranking/" + plid);
   }
-  putRanking(rank: RankingModel, id: string) {
+  putRanking(rank: RankingModel, id: number) {
+    let body = new URLSearchParams();
+    body.set("POINTS", rank.points.toString());
+    body.set("userplid", rank.userplid.plid.toString());
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.put('/api/ranking/'+id, body.toString(), options);
   }
   postRanking(rank: RankingModel) {
+    let body = new URLSearchParams();
+    body.set("POINTS", rank.points.toString());
+    body.set("userplid", rank.userplid.plid.toString());
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.post('/api/ranking', body.toString(), options);
+  }
+  delRanking(id:number){
+    return this.HttpClient.delete("/api/ranking/"+id);
   }
   //---------------------------------------------------------
   //User
@@ -38,7 +57,7 @@ export class EndpointServiceService {
     return this.HttpClient.get<Array<ILoginResponse>>("/api/user");
   }
   getUser(plid: string) {
-
+    return this.HttpClient.get<ILoginResponse>("/api/user/"+plid);
   }
   putUser(plid: string, user: IUserSimple) {
     // return this.HttpClient.put<IUserSimple>("/api/user/"+plid,user);
@@ -59,36 +78,65 @@ export class EndpointServiceService {
   //---------------------------------------------------------
   //Achivement
   getAllAchivement() {
-
+    return this.HttpClient.get<Array<Achivement>>("/api/archivement");
   }
   getAchivement(plid: string) {
-
+    return this.HttpClient.get<Achivement>("/api/archivement/"+plid);
   }
-  putAchivement() {
-    //achivement requiere de una interfaz
-  }
-  postAchivement() {
+  putAchivement(achivement:Achivement,id:number) {
+    let body = new URLSearchParams();
+    body.set("masterAchivement", achivement.masterAchivement.id);
+    body.set("userm", achivement.userm.plid.toString());
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.put('/api/archivement/'+id, body.toString(), options);
   }
-  delArchivement() {
+  postAchivement(achivement:Achivement) {
+    let body = new URLSearchParams();
+    body.set("masterAchivement", achivement.masterAchivement.id);
+    body.set("userm", achivement.userm.plid.toString());
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.post('/api/archivement', body.toString(), options);
+  }
+  delArchivement(id:number) {
+    return this.HttpClient.delete("/api/archivement/"+id);
   }
   //---------------------------------------------------------
   //Master achivement
   getAllMasterAchivement() {
-
+    return this.HttpClient.get<Array<MasterAchivement>>("/api/masterachive");
   }
-  getMasterAchivement() {
-
+  getMasterAchivement(id:number) {
+    return this.HttpClient.get<MasterAchivement>("/api/masterachive"+id);
   }
-  putMasterAchivement() {
+  putMasterAchivement(MastAch:MasterAchivement,id:number) {
+    let body = new URLSearchParams();
+    body.set("NAME", MastAch.name);
+    body.set("DESCRIPTION", MastAch.description);
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.put('/api/masterachive/'+id, body.toString(), options);
   }
-  postMasterAchivement() {
+  postMasterAchivement(MastAch:MasterAchivement) {
+    let body = new URLSearchParams();
+    body.set("NAME", MastAch.name);
+    body.set("DESCRIPTION", MastAch.description);
 
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.HttpClient.post('/api/masterachive', body.toString(), options);
+  
   }
-  delMasterAchivement() {
-
+  delMasterAchivement(id:number) {
+    return this.HttpClient.delete("/api/masterachive/"+id);
   }
 
 

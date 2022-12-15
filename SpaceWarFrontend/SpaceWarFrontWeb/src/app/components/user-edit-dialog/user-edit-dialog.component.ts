@@ -63,6 +63,7 @@ export class UserEditDialogComponent implements OnInit {
     this.endpoint.putUser(this.plid,user).subscribe(data=>{
 
     })
+    this.dialogRef.close();
   }
   onNoClick(): void {
    this.dialogRef.close();

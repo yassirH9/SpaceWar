@@ -40,13 +40,13 @@ export class AuthGuardService {
     if (this.authService.isLoggedIn()) {
       const userRole = this.authService.getRole();
       if (route.data['role'] && route.data['role'].indexOf(userRole) === -1) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/ranking']);
         return false;
       }
       return true;
     }
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/ranking']);
     return false;
   }
 }
