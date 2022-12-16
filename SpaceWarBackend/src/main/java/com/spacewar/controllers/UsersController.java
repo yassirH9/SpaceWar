@@ -5,11 +5,17 @@ import com.spacewar.entity.models.Role;
 import com.spacewar.entity.models.Users;
 import com.spacewar.entity.repository.RoleRepository;
 import com.spacewar.entity.services.IUserService;
+import com.spacewar.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.net.http.HttpClient;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +36,7 @@ public class UsersController {
     }
 
     @GetMapping("/user/{plid}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
     public Users getUser(@PathVariable(value = "plid") Long PLID) {
         return userService.get(PLID);
     }
@@ -51,15 +57,23 @@ public class UsersController {
         user.setPSWD(pswdEncrip);
 
         //Asignacion de rol
-        RoleRepository roleRepository;
-        Set<Role> roles = new HashSet<>();
+//        RoleRepository roleRepository;
+//        Set<Role> roles = new HashSet<>();
+//
+//        Role userRole = new Role(ERole.ROLE_USER);
+//        roles.add(userRole);
+//        user.setRoles(roles);
 
-        Role userRole = new Role(ERole.ROLE_USER);
-        roles.add(userRole);
-        user.setRoles(roles);
 
-        //guardar usuario
-        userService.put(user, PLID);
+//        user.setRole(new Role(ERole.ROLE_USER));
+//        userService.put(user, PLID);
+        //--------------------------------------------
+        Users currentUser = userService.get(PLID);
+        currentUser.setPSWD(user.getPSWD());
+        currentUser.setMAIL(user.getMAIL());
+        currentUser.setNICKNAME(user.getNICKNAME());
+        //currentUser.setRoles(currentUser.getRoles())
+        userService.put(currentUser,PLID);
     }
 
     @DeleteMapping("/user/{PLID}")

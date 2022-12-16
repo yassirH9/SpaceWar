@@ -1,0 +1,70 @@
+.main-container {
+    margin-top: 10em;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    .inner-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        justify-items: center;
+
+
+        background-color: rgba(217, 217, 217, 0.25);
+        // padding: 2em;
+
+        padding-bottom: 30vw;
+        padding-right: 1em;
+        padding-left: 1em;
+        padding-top: 1em;
+
+        .achivement {
+            background: rgba(217, 217, 217, 0.7);
+            border: 2px solid #000000;
+            border-radius: 15px;
+
+            margin: 1.5em;
+
+            img {
+                width: 12em;
+                margin: .5em;
+                margin: 1em;
+                max-width: 12em;
+            }
+
+            .ach-name {
+                // background-color: rgba(255, 0, 0, 0.5);
+                color: white;
+
+                img {
+                    max-width: 20px;
+                    max-height: 20px;
+                    margin: 0;
+                    padding-left: 112px;
+                    padding-right: 112px;
+                }
+
+                margin-bottom: .5em;
+                margin-top: .5em;
+
+                p {
+                    padding-top: 3px;
+                    padding-bottom: 3px;
+                }
+            }
+
+            min-height: 266px;
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+}

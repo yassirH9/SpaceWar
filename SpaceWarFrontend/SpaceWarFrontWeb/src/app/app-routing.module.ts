@@ -9,6 +9,8 @@ import { RankingComponent } from './page/ranking/ranking.component';
 import { RegisterformComponent } from './page/registerform/registerform.component';
 import { StatisticsComponent } from './page/statistics/statistics.component';
 import { TypeauthselectorComponent } from './page/typeauthselector/typeauthselector.component';
+import { UserDataComponent } from './page/user-data/user-data.component';
+import { AuthGuardService } from './service/RolService/auth.guard.service';
 
 const routes: Routes = [
   {path:'', component:RankingComponent},
@@ -20,6 +22,7 @@ const routes: Routes = [
   {path:"download",component:DownloadComponent},
   {path:"adminzone",component:AdminzoneComponent},
   {path:"achivement",component:AchivementComponent},
+  {path:"userdata",component:UserDataComponent},
 ];
 
 @NgModule({

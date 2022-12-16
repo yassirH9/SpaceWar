@@ -25,6 +25,7 @@ import { MasterAchNewDialogComponent } from './components/master-ach-new-dialog/
 import { AchivementEditDialogComponent } from './components/achivement-edit-dialog/achivement-edit-dialog.component';
 import { AchivementNewDialogComponent } from './components/achivement-new-dialog/achivement-new-dialog.component';
 import { AchivementComponent } from './page/achivement/achivement.component';
+import { UserDataComponent } from './page/user-data/user-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { AchivementComponent } from './page/achivement/achivement.component';
     AchivementEditDialogComponent,
     AchivementNewDialogComponent,
     AchivementComponent,
+    UserDataComponent,
   ],
   imports: [
     BrowserModule,

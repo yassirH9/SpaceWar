@@ -1,0 +1,46 @@
+<div class="main-container">
+    <h1>Hello! {{username}}</h1>
+    <div class="inner-container">
+        <div class="form-container">
+            <form [formGroup]="userForm">
+                <div>
+                    <label>User Name</label>
+                    <input id="name" type="text" name="name" placeholder="Name" formControlName="name"
+                        [readOnly]="!editable">
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input id="mail" type="text" name="mail" placeholder="Email" formControlName="mail"
+                        [readOnly]="!editable">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input id="password" type="password" name="password" placeholder="Password"
+                        formControlName="password" [readOnly]="!editable">
+                </div>
+            </form>
+            <div class="sub-container">
+                <!-- Esta seccion queda desactivada por problemas con el backend a la hora de modificar un usuario que esta en uso -->
+                <!-- <button id="edit" (click)="toggleEdit()" [hidden]="buttonHide == false">Edit</button>
+                <button id="send" (click)="sendChanges()" [hidden]="buttonHide == true">Save</button> -->
+                <!-- Esta seccion queda desactivada por problemas con el backend a la hora de modificar un usuario que esta en uso -->
+                <button id="logout" (click)="logOut()">Log Out</button>
+            </div>
+
+        </div>
+        <div class="sub-img">
+            <div class="image-container">
+                <!-- <img src="../../../assets/images/icons/user-placeholder.png" alt="user img"> -->
+                <!-- <img class="user-img" [src]="'data:image/jpg;base64,'+ ImageBase64" alt="user img"> -->
+                <img class="user-img" [src]="ImageBase64" alt="user img">
+                <button for="file-upload" class="edit-button"><img class="edit-icon"
+                        src="../../../assets/images/icons/edit_icon.png" (click)="checkType()"></button>
+                <button class="delete-button"><img class="delete-icon"
+                        src="../../../assets/images/icons/trash_bin.png" (click)="deleteUserImage()"></button>
+            </div>
+        </div>
+        <!-- Iage input -->
+        <input type="file" id="putImage" (change)="putUserImage($event)" />
+        <input type="file" id="postImage" (change)="postUserImage($event)" />
+    </div>
+</div>

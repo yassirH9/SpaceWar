@@ -71,9 +71,16 @@
     margin-right: 1.5em;
 }
 
+a.user{
+    border: 1px solid black !important;
+    border-radius: 100% !important;
+    width: 2.3em;
+    height: 2.3em;
+}
 a img.userimg {
     width: 2.3em;
     height: 2.3em;
+    border-radius: 100%;
 }
 
 img.menuicon {

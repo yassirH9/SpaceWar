@@ -94,3 +94,16 @@ table tbody tr:nth-child(odd) {
         font-size: 15px;
     }
 }
+
+.tr-anim {
+  animation: slide-in-left 1s;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateY(300px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

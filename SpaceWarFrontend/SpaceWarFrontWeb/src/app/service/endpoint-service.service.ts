@@ -10,6 +10,7 @@ import { ILoginResponse } from '../models/ILoginResponse';
 import { IUserSimple } from '../models/IUserSimple';
 import { MasterAchivement } from '../models/MasterAchivement';
 import { Achivement } from '../models/Achivement';
+import { IImage } from '../models/IImage';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/ranking/'+id, body.toString(), options);
+    return this.HttpClient.put('/api/ranking/' + id, body.toString(), options);
   }
   postRanking(rank: RankingModel) {
     let body = new URLSearchParams();
@@ -47,8 +48,8 @@ export class EndpointServiceService {
     };
     return this.HttpClient.post('/api/ranking', body.toString(), options);
   }
-  delRanking(id:number){
-    return this.HttpClient.delete("/api/ranking/"+id);
+  delRanking(id: number) {
+    return this.HttpClient.delete("/api/ranking/" + id);
   }
   //---------------------------------------------------------
   //User
@@ -57,7 +58,7 @@ export class EndpointServiceService {
     return this.HttpClient.get<Array<ILoginResponse>>("/api/user");
   }
   getUser(plid: string) {
-    return this.HttpClient.get<ILoginResponse>("/api/user/"+plid);
+    return this.HttpClient.get<ILoginResponse>("/api/user/" + plid);
   }
   putUser(plid: string, user: IUserSimple) {
     // return this.HttpClient.put<IUserSimple>("/api/user/"+plid,user);
@@ -70,7 +71,7 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/user/'+plid, body.toString(), options);
+    return this.HttpClient.put('/api/user/' + plid, body.toString(), options);
   }
   delUser(plid: string) {
     return this.HttpClient.delete("/api/user/" + plid);
@@ -81,9 +82,9 @@ export class EndpointServiceService {
     return this.HttpClient.get<Array<Achivement>>("/api/archivement");
   }
   getAchivement(plid: string) {
-    return this.HttpClient.get<Achivement>("/api/archivement/"+plid);
+    return this.HttpClient.get<Achivement>("/api/archivement/" + plid);
   }
-  putAchivement(achivement:Achivement,id:number) {
+  putAchivement(achivement: Achivement, id: number) {
     let body = new URLSearchParams();
     body.set("masterAchivement", achivement.masterAchivement.id);
     body.set("userm", achivement.userm.plid.toString());
@@ -91,9 +92,9 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/archivement/'+id, body.toString(), options);
+    return this.HttpClient.put('/api/archivement/' + id, body.toString(), options);
   }
-  postAchivement(achivement:Achivement) {
+  postAchivement(achivement: Achivement) {
     let body = new URLSearchParams();
     body.set("masterAchivement", achivement.masterAchivement.id);
     body.set("userm", achivement.userm.plid.toString());
@@ -103,18 +104,18 @@ export class EndpointServiceService {
     };
     return this.HttpClient.post('/api/archivement', body.toString(), options);
   }
-  delArchivement(id:number) {
-    return this.HttpClient.delete("/api/archivement/"+id);
+  delArchivement(id: number) {
+    return this.HttpClient.delete("/api/archivement/" + id);
   }
   //---------------------------------------------------------
   //Master achivement
   getAllMasterAchivement() {
     return this.HttpClient.get<Array<MasterAchivement>>("/api/masterachive");
   }
-  getMasterAchivement(id:number) {
-    return this.HttpClient.get<MasterAchivement>("/api/masterachive"+id);
+  getMasterAchivement(id: number) {
+    return this.HttpClient.get<MasterAchivement>("/api/masterachive" + id);
   }
-  putMasterAchivement(MastAch:MasterAchivement,id:number) {
+  putMasterAchivement(MastAch: MasterAchivement, id: number) {
     let body = new URLSearchParams();
     body.set("NAME", MastAch.name);
     body.set("DESCRIPTION", MastAch.description);
@@ -122,9 +123,9 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/masterachive/'+id, body.toString(), options);
+    return this.HttpClient.put('/api/masterachive/' + id, body.toString(), options);
   }
-  postMasterAchivement(MastAch:MasterAchivement) {
+  postMasterAchivement(MastAch: MasterAchivement) {
     let body = new URLSearchParams();
     body.set("NAME", MastAch.name);
     body.set("DESCRIPTION", MastAch.description);
@@ -133,11 +134,15 @@ export class EndpointServiceService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
     return this.HttpClient.post('/api/masterachive', body.toString(), options);
-  
+
   }
-  delMasterAchivement(id:number) {
-    return this.HttpClient.delete("/api/masterachive/"+id);
+  delMasterAchivement(id: number) {
+    return this.HttpClient.delete("/api/masterachive/" + id);
   }
 
-
+  //---------------------------------------
+  //test
+  getAllAchivementByUser(plid: string) {
+    return this.HttpClient.get<Array<Achivement>>("/api/archivement/user/" + plid);
+  }
 }

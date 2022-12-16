@@ -1,1 +1,14 @@
-<p>achivement works!</p>
+<div class="main-container">
+    <h1>Achivements</h1>
+    <div class="inner-container">
+        <div class="achivement" *ngFor="let x of masterAch">
+            <div class="ach-img">
+                <img src="../../../assets/images/icons/spaceship.png" alt="Achivement img">
+            </div>
+            <div class="ach-name">
+                <p id="name" *ngIf="AchivementExist(x.id)" [ngStyle]="{'background-color': AchivementExist(x.id) ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 0, 0, 0.5)'}">{{x.name}}</p>
+                <img id="lock" src="../../../assets/images/icons/candado_dark.png" alt="candado" *ngIf="!AchivementExist(x.id)" [ngStyle]="{'background-color': AchivementExist(x.id) ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 0, 0, 0.5)'}">
+            </div>
+        </div>
+    </div>
+</div>

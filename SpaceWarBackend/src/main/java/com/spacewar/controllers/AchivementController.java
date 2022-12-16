@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,5 +44,21 @@ public class AchivementController {
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void deleteArchivement(@PathVariable(value = "id") Long id) {
         archivementService.delete(id);
+    }
+
+
+    //test
+    @GetMapping("/archivement/user/{plid}")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
+    public List<Achivement> getArchivementByUser(@PathVariable(value = "plid") Long id) {
+        List<Achivement> buffer = archivementService.getAll();
+        List<Achivement> returned = new ArrayList<Achivement>();
+
+        buffer.forEach(obj->{
+            if(obj.getUserm().getPLID() == id){
+                returned.add(obj);
+            }
+        });
+        return returned;
     }
 }

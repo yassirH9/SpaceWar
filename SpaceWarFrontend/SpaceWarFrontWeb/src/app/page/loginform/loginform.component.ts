@@ -7,6 +7,8 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { StorageserviceService } from '../../service/TokenService/storageservice.service'
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
+import { Router } from '@angular/router';
+import { ImageserviceService } from 'src/app/service/imageservice.service';
 
 @Component({
   selector: 'app-loginform',
@@ -15,7 +17,14 @@ import { RoleserviceService } from 'src/app/service/RolService/roleservice.servi
 })
 export class LoginformComponent implements OnInit {
 
-  constructor(private roleservice: RoleserviceService, private auth: AuthServiceService, private cookie: CookieService,private storage: StorageserviceService) { }
+  constructor(
+    private roleservice: RoleserviceService,
+    private auth: AuthServiceService, 
+    private cookie: CookieService,
+    private storage: StorageserviceService,
+    private route:Router,
+    private imageService:ImageserviceService,
+    ) { }
 
 
   //loginformw
@@ -51,6 +60,8 @@ export class LoginformComponent implements OnInit {
         this.updateAuthInfo(data.rol,true);
         console.log("ROLE: "+data.rol);
       })
+
+      this.route.navigateByUrl("/ranking");
     });
     //window.location.href="/ranking";
   }

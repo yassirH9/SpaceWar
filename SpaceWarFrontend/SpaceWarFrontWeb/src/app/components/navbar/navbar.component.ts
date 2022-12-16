@@ -1,6 +1,6 @@
-import { Component, OnInit,HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 //cookie
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 import { ImageserviceService } from 'src/app/service/imageservice.service';
 //storage service
 import { StorageserviceService } from 'src/app/service/TokenService/storageservice.service';
@@ -13,15 +13,15 @@ import { RoleserviceService } from 'src/app/service/RolService/roleservice.servi
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
- 
+
   constructor(
-    private cookie:CookieService, 
+    private cookie: CookieService,
     private storage: StorageserviceService,
-    private imageService:ImageserviceService,
+    private imageService: ImageserviceService,
     private sanitizer: DomSanitizer,
-    private route:Router,
-    private roleservice:RoleserviceService,
-    ) { }
+    private route: Router,
+    private roleservice: RoleserviceService,
+  ) { }
   menuicon = "../../../assets/images/icons/menu.png"
   imgsrc = "../../../assets/images/icons/user-placeholder.png"
   thumbnail: any;
@@ -32,47 +32,43 @@ export class NavbarComponent implements OnInit {
   statistics = "/statistics"
   achivement = "/achivement"
   download = "/download"
-  admin="/adminzone"
-  userdata="/userdata"
+  admin = "/adminzone"
+  userdata = "/userdata"
   ngOnInit(): void {
+    
   }
-  goStatistics(){
+  goStatistics() {
     this.route.navigateByUrl(this.statistics);
   }
-  goAchivement(){
+  goAchivement() {
     this.route.navigateByUrl(this.achivement);
   }
-  goDownload(){
+  goDownload() {
     this.route.navigateByUrl(this.download);
   }
-  goAdminZone(){
+  goAdminZone() {
     this.route.navigateByUrl(this.admin);
   }
-  goRanking(){
+  goRanking() {
     this.route.navigateByUrl(this.ranking);
   }
-  onUser(){
+  onUser() {
     //if(this.cookie.get('userToken')==""){
-    if(this.storage.getToken()==null){
+    if (this.storage.getToken() == null) {
       console.log(this.storage.getToken());
       this.route.navigateByUrl(this.select);
-    }else{
+    } else {
       this.route.navigateByUrl(this.userdata);
       console.log(this.storage.getToken());
-      //display a blob in img tag
-      // this.imageService.getUserImage(1).subscribe((blob:any)=>{
-      //   let objectURL = URL.createObjectURL(blob);
-      //   this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      // })
+      this.route.navigateByUrl("/userdata");
     }
   }
-
-  openmenu(){
+  openmenu() {
     //alert("works")
-    var hammenu =  document.getElementById("hammenu");
-    if(hammenu?.style.visibility == "visible"){
+    var hammenu = document.getElementById("hammenu");
+    if (hammenu?.style.visibility == "visible") {
       hammenu.style.visibility = "hidden";
-    }else{
+    } else {
       hammenu!.style.visibility = "visible";
     }
     // document.getElementById("hammenu")!.style.visibility = "visible";
@@ -81,7 +77,7 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
-    if(window.innerWidth > 800){
+    if (window.innerWidth > 800) {
       document.getElementById("hammenu")!.style.visibility = "hidden";
     }
   }

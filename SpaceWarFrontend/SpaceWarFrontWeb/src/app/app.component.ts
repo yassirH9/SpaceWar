@@ -17,9 +17,7 @@ export class AppComponent {
   }
   //al cerrar la web se elimina todos los datos de sesion del usuario
   ngOnDestroy(): void {
-    if (this.role.isLoggedIn() == true) {
-      this.storage.signOut();
-      this.role.logout();
-    }
+    this.storage.signOut();
+    this.role.logout();
   }
 }

@@ -1,10 +1,10 @@
 <div class="topnav" id="myTopnav">
-    <button (click)="openmenu()"><img  [src]="menuicon" alt="menu icon" class="menuicon"></button>
+    <button (click)="openmenu()"><img [src]="menuicon" alt="menu icon" class="menuicon"></button>
     <nav>
         <a (click)="goRanking()" class="active">Ranking</a>
         <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goStatistics()" class="active">Statistics</a>
         <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goAchivement()" class="active">Achivements</a>
-        <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goDownload()"class="active">Download</a>
+        <a *ngxPermissionsOnly="['ROLE_USER','ROLE_ADMIN']" (click)="goDownload()" class="active">Download</a>
         <a *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="goAdminZone()" class="active">Admin Zone</a>
     </nav>
     <div>

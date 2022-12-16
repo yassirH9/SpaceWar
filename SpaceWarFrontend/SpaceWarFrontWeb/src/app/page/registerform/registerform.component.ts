@@ -4,6 +4,7 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { IRegister } from 'src/app/models/IRegister';
 //cookie
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registerform',
@@ -12,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class RegisterformComponent implements OnInit {
 
-  constructor(private auth: AuthServiceService, private cookie: CookieService) { }
+  constructor(private auth: AuthServiceService, private cookie: CookieService,private route:Router) { }
   //loginformw
   register = new FormGroup({
     nickname: new FormControl(''),
@@ -37,7 +38,7 @@ export class RegisterformComponent implements OnInit {
       console.log(data);
       this.isSuccessful = true;
       this.isSignUpFailed = false;
+      this.route.navigateByUrl("/login");
     })
-
   }
 }

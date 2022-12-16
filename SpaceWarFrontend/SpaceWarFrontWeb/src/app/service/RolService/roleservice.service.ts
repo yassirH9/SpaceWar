@@ -23,7 +23,7 @@ export class RoleserviceService {
     this.permissionsService.loadPermissions(perm);
 
     localStorage.setItem('STATE', 'false');
-    localStorage.setItem('ROLE', '');
+    localStorage.setItem('ROLE', '');   
     return of({ success: false, role: '' });
   }
 

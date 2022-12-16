@@ -58,14 +58,14 @@
                         <div class="divCell">User PLID</div>
                         <div class="divCell">User nickname</div>
                         <div class="divCell">Achivement name</div>
-                        <div class="divCell">Achivement description</div>
+                        <!-- <div class="divCell">Achivement description</div> -->
                         <div class="divCell">Actions</div>
                     </div>
                     <div class="divRow" *ngFor="let x of achivement">
                         <div class="divCell">{{x.userm.plid}}</div>
                         <div class="divCell">{{x.userm.nickname}}</div>
                         <div class="divCell">{{x.masterAchivement.name}}</div>
-                        <div class="divCell">{{x.masterAchivement.description}}</div>
+                        <!-- <div class="divCell">{{x.masterAchivement.description}}</div> -->
                         <div class="divCell">
                             <button (click)="delAchivement(x.id)" class="del">Delete</button>
                             <button (click)="putAchivement(x.userm.plid,x.masterAchivement.id,x.id)" class="edit">Edit</button>

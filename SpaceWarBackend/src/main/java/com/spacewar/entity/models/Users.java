@@ -110,4 +110,11 @@ public class Users implements Serializable {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
+    //16/12/22
+    //added to change role from user or add new one
+    public void setRole(Role roles) {
+        this.roles.add((roles));
+    }
 }

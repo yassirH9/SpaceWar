@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { IImage } from '../models/IImage';
 @Injectable({
   providedIn: 'root'
 })
 export class ImageserviceService {
 
   constructor(private HttpClient: HttpClient) { }
-
-  getUserImage(plid:number){
-    return this.HttpClient.get<any>("/api/get/image/user/"+plid);
-  }
   
+  getImageByUserID(plid: any) {
+    return this.HttpClient.get<IImage>("/api/get/image/user/" + plid);
+  }
+  //---------------------------------------
+  putImageByUserID(image: File, plid: any) {
+    const formData = new FormData();
+    formData.append('image',image);
+    formData.append('user',plid);
+
+    return this.HttpClient.put('/api/put/image/', formData);
+  }
+  //---------------------------------------
+  postImageByUserID(image:File,plid:any){
+    const formData = new FormData();
+    formData.append('image',image);
+    formData.append('user',plid);
+
+    return this.HttpClient.post('/api/upload/image', formData);
+  }
+
 }
