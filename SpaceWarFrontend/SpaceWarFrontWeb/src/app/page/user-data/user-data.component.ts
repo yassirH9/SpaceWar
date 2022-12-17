@@ -55,7 +55,7 @@ export class UserDataComponent {
     this.userplid = window.sessionStorage.getItem("user-id")!;
     //trae los nuevos datos
     this.endpoint.getUser(this.userplid).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.username = data.nickname;
       this.usermail = data.mail;
       this.userpswd = data.pswd;
@@ -100,7 +100,7 @@ export class UserDataComponent {
       console.log(user);
       
       this.endpoint.putUser(this.userplid, user).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
 
       });
       //se hace que el usuario inicie sesion de nuevo con las nuevas credenciales
