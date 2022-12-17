@@ -15,14 +15,13 @@
                 </div>
                 <div>
                     <label>Password</label>
-                    <input id="password" type="password" name="password" placeholder="Password"
-                        formControlName="password" [readOnly]="!editable">
+                    <input id="password" type="password" name="password" placeholder="Password" formControlName="password" [readOnly]="!editable">
                 </div>
             </form>
             <div class="sub-container">
                 <!-- Esta seccion queda desactivada por problemas con el backend a la hora de modificar un usuario que esta en uso -->
-                <!-- <button id="edit" (click)="toggleEdit()" [hidden]="buttonHide == false">Edit</button>
-                <button id="send" (click)="sendChanges()" [hidden]="buttonHide == true">Save</button> -->
+                <button id="edit" (click)="toggleEdit()" [hidden]="buttonHide == false">Edit</button>
+                <button id="send" (click)="sendChanges()" [hidden]="buttonHide == true">Save</button>
                 <!-- Esta seccion queda desactivada por problemas con el backend a la hora de modificar un usuario que esta en uso -->
                 <button id="logout" (click)="logOut()">Log Out</button>
             </div>

@@ -13,7 +13,7 @@ import { UserDataComponent } from './page/user-data/user-data.component';
 import { AuthGuardService } from './service/RolService/auth.guard.service';
 
 const routes: Routes = [
-  {path:'', component:RankingComponent},
+  {path:'', component:TypeauthselectorComponent},
   {path:'login', component:LoginformComponent},
   {path:'register', component:RegisterformComponent},
   {path:"select", component:TypeauthselectorComponent},

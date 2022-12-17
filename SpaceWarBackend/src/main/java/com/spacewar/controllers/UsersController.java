@@ -50,29 +50,15 @@ public class UsersController {
     @PutMapping("/user/{PLID}")
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void putUser(@PathVariable(value = "PLID") Long PLID, Users user) {
-        //encriptado de la contraseña que se ha modificado
-
         //la contraseña ya viene con bcript desde el put frontend
-        String pswdEncrip = encoder.encode(user.getPSWD());
-        user.setPSWD(pswdEncrip);
+//        String pswdEncrip = encoder.encode(user.getPSWD());
+//        user.setPSWD(pswdEncrip);
 
-        //Asignacion de rol
-//        RoleRepository roleRepository;
-//        Set<Role> roles = new HashSet<>();
-//
-//        Role userRole = new Role(ERole.ROLE_USER);
-//        roles.add(userRole);
-//        user.setRoles(roles);
-
-
-//        user.setRole(new Role(ERole.ROLE_USER));
-//        userService.put(user, PLID);
         //--------------------------------------------
         Users currentUser = userService.get(PLID);
-        currentUser.setPSWD(user.getPSWD());
+        currentUser.setPSWD(encoder.encode(user.getPSWD()));
         currentUser.setMAIL(user.getMAIL());
         currentUser.setNICKNAME(user.getNICKNAME());
-        //currentUser.setRoles(currentUser.getRoles())
         userService.put(currentUser,PLID);
     }
 

@@ -27,5 +27,8 @@ export class ImageserviceService {
 
     return this.HttpClient.post('/api/upload/image', formData);
   }
-
+  //---------------------------------------
+  deleteImageByUserID(plid:any){
+    return this.HttpClient.delete("/api/del/image/"+plid);
+  }
 }

@@ -62,16 +62,20 @@ export class EndpointServiceService {
   }
   putUser(plid: string, user: IUserSimple) {
     // return this.HttpClient.put<IUserSimple>("/api/user/"+plid,user);
-
-    let body = new URLSearchParams();
-    body.set("NICKNAME", user.NICKNAME);
-    body.set("MAIL", user.MAIL);
-    body.set("PSWD", user.PSWD);
-
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
     };
-    return this.HttpClient.put('/api/user/' + plid, body.toString(), options);
+    console.log(user.NICKNAME+" "+user.MAIL+" "+user.PSWD);
+    
+    const body = new URLSearchParams();
+    body.set('NICKNAME', user.NICKNAME);
+    body.set('MAIL', user.MAIL);
+    body.set('PSWD', user.PSWD);
+
+    return this.HttpClient.put('/api/user/'+plid, body.toString(), httpOptions);
+    
   }
   delUser(plid: string) {
     return this.HttpClient.delete("/api/user/" + plid);

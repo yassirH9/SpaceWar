@@ -96,6 +96,9 @@
                 }
 
                 .edit-button {
+                    border: 0;
+                    background-color: rgba(0, 0, 0, 0.2);
+
                     border-radius: 10px;
                     position: absolute;
 
@@ -104,6 +107,9 @@
                     .edit-icon {
                         max-height: 2em;
                     }
+                }
+                .edit-button:hover{
+                    background-color: rgba(0, 0, 0, 0.7);
                 }
                 .delete-button {
                     border: 0;
@@ -115,6 +121,9 @@
                     .delete-icon {
                         max-height: 2em;
                     }
+                }
+                .delete-button:hover{
+                    background-color: rgba(255, 0, 0, 0.7);
                 }
             }
         }

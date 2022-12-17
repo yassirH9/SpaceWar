@@ -89,15 +89,22 @@ export class UserDataComponent {
         this.editable = false;
         this.buttonHide = true;
       }
+      this.username = this.userForm.get('name')!.value;
+      this.usermail = this.userForm.get('mail')!.value;
+      this.userpswd = this.userForm.get('password')!.value;
       const user: IUserSimple = {
         NICKNAME: this.username,
         MAIL: this.usermail,
         PSWD: this.userpswd,
       };
+      console.log(user);
+      
       this.endpoint.putUser(this.userplid, user).subscribe((data) => {
         console.log(data);
 
-      })
+      });
+      //se hace que el usuario inicie sesion de nuevo con las nuevas credenciales
+      this.logOut();
     }
   }
   logOut() {
@@ -167,6 +174,9 @@ export class UserDataComponent {
     };
   }
   deleteUserImage(){
-    
+    this.imageService.deleteImageByUserID(window.sessionStorage.getItem('user-id')!).subscribe((data)=>{
+
+    });
+    window.location.reload();
   }
 }
