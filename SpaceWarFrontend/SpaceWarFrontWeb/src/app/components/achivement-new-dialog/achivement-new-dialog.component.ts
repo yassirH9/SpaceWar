@@ -33,17 +33,17 @@ export class AchivementNewDialogComponent {
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     //injet data
-    this.id = data.id;
-    this.plid = data.plid;
+    // this.id = data.id;
+    // this.plid = data.plid;
 
     this.fulleditable = data.fullEditable;
   }
   ngOnInit() {
     //añadir valores injectados al formulario de edicion
-    this.editForm.setValue({
-      id: this.id,
-      plid: this.plid,
-    });
+    // this.editForm.setValue({
+    //   id: this.id,
+    //   plid: this.plid,
+    // });
 
     console.log(this.fulleditable);
     if (this.fulleditable === true) {
@@ -59,33 +59,56 @@ export class AchivementNewDialogComponent {
     this.id = this.editForm.get("id")!.value;
     this.plid = this.editForm.get("plid")!.value;
 
-    const user: ILoginResponse = {
-      plid: this.plid,
-      nickname: "",
-      mail:"",
-      accessToken:"",
-      rol:"",
-      pswd:"",      
-    }
-    const masterachivement: MasterAchivement ={
-      id:this.id,
-      name:"",
-      description:"",
-    }
-    const achivement: Achivement = {
-     userm:user,
-     masterAchivement: masterachivement,
-    }
-        
-    this.endpoint.postAchivement(achivement).subscribe((data) => {
+    console.log(this.plid);
+    if (this.plid != "" && this.plid != "") {
+      document.getElementById("error-sub")!.style.display = "none";
 
-    },(error)=>{
-      Swal.fire(
-        'Unexpected error',
-        'It is due to some problem with the server, please try again later.',
-        'warning'
-      )
-    });
-    this.dialogRef.close();
+      const user: ILoginResponse = {
+        plid: this.plid,
+        nickname: "",
+        mail: "",
+        accessToken: "",
+        rol: "",
+        pswd: "",
+      }
+      const masterachivement: MasterAchivement = {
+        id: this.id,
+        name: "",
+        description: "",
+      }
+      const achivement: Achivement = {
+        userm: user,
+        masterAchivement: masterachivement,
+      }
+
+      this.endpoint.postAchivement(achivement).subscribe((data) => {
+        this.dialogRef.close();
+
+      }, (error_) => {
+        if (error_.status == 504) {
+          Swal.fire(
+            'Please try again later',
+            'We are currently experiencing unexpected problems with the server.',
+            'warning'
+          )
+        }
+        if (error_.status == 500) {
+          Swal.fire(
+            'Please try again later',
+            'Server validation error',
+            'warning'
+          )
+        }
+        if (error_.status == 401) {
+          Swal.fire(
+            'Unauthorized',
+            'please log in.',
+            'warning'
+          )
+        }
+      });
+    }else{
+      document.getElementById("error-sub")!.style.display = "block";
+    }
   }
 }

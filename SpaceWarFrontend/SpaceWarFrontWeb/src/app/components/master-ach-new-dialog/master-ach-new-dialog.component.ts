@@ -41,9 +41,9 @@ export class MasterAchNewDialogComponent {
   ngOnInit() {
     //añadir valores injectados al formulario de edicion
     this.editForm.setValue({
-      id: this.id,
-      name: this.name,
-      description: this.description,
+      id: "",
+      name: "",
+      description: "",
     });
 
     console.log(this.fulleditable);
@@ -60,22 +60,43 @@ export class MasterAchNewDialogComponent {
     this.id = this.editForm.get("id")!.value;
     this.name = this.editForm.get("name")!.value;
     this.description = this.editForm.get("description")!.value;
+    if (this.name != "" && this.description != "") {
+      document.getElementById("error-sub")!.style.display = "none";
+      const MastAchivement = {
+        id: this.id,
+        name: this.name,
+        description: this.description,
+      }
 
-    const MastAchivement = {
-      id: this.id,
-      name: this.name,
-      description: this.description,
+      this.endpoint.postMasterAchivement(MastAchivement).subscribe((data) => {
+
+      }, (error_) => {
+        if (error_.status == 504) {
+          Swal.fire(
+            'Please try again later',
+            'We are currently experiencing unexpected problems with the server.',
+            'warning'
+          )
+        }
+        if (error_.status == 500) {
+          Swal.fire(
+            'Please try again later',
+            'Server validation error',
+            'warning'
+          )
+        }
+        if (error_.status == 401) {
+          Swal.fire(
+            'Unauthorized',
+            'please log in.',
+            'warning'
+          )
+        }
+      });
+      this.dialogRef.close();
+
+    }else{
+      document.getElementById("error-sub")!.style.display = "block";
     }
-
-    this.endpoint.postMasterAchivement(MastAchivement).subscribe((data) => {
-
-    },(error)=>{
-      Swal.fire(
-        'Unexpected error',
-        'It is due to some problem with the server, please try again later.',
-        'warning'
-      )
-    });
-    this.dialogRef.close();
   }
 }

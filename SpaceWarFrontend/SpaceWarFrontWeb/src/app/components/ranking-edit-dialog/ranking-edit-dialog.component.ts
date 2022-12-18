@@ -14,12 +14,12 @@ import Swal from 'sweetalert2';
 })
 export class RankingEditDialogComponent {
   //input data
-  rankID:any;
+  rankID: any;
   plid: any;
-  nickname:any;
-  points:any;
+  nickname: any;
+  points: any;
 
-  fulleditable:boolean;
+  fulleditable: boolean;
   //form group
   editForm = new FormGroup({
     plid: new FormControl(''),
@@ -31,7 +31,7 @@ export class RankingEditDialogComponent {
     public dialogRef: MatDialogRef<RankingEditDialogComponent>,
     private endpoint: EndpointServiceService,
     @Inject(MAT_DIALOG_DATA) data: any,
-  ){
+  ) {
     //injet data
     this.plid = data.plid;
     this.nickname = data.nickname;
@@ -40,7 +40,7 @@ export class RankingEditDialogComponent {
     this.rankID = data.id;
     this.fulleditable = data.fullEditable;
   }
-  ngOnInit(){
+  ngOnInit() {
     //añadir valores injectados al formulario de edicion
     this.editForm.setValue({
       plid: this.plid,
@@ -49,43 +49,87 @@ export class RankingEditDialogComponent {
     });
 
     console.log(this.fulleditable);
-    if(this.fulleditable === true){
+    if (this.fulleditable === true) {
       document.getElementById('id')!.removeAttribute("readonly");
       document.getElementById('nickname')!.removeAttribute("readonly");
     }
   }
-  onNoClick(){
+  onNoClick() {
     //cerrar formulario en caso de pulsar cancelar
     this.dialogRef.close();
   }
-  send(){
+  send() {
     this.plid = this.editForm.get("plid")!.value;
     this.nickname = this.editForm.get("nickname")!.value;
     this.points = this.editForm.get("points")!.value;
+    if (this.points != null) {
+      
+      const user: ILoginResponse = {
+        plid: this.plid,
+        nickname: "",
+        mail: "",
+        accessToken: "",
+        rol: "",
+        pswd: "",
+      }
+      const rank: RankingModel = {
+        userplid: user,
+        points: this.points,
+        id: this.rankID,
+      }
 
-    const user: ILoginResponse = {
-      plid: this.plid,
-      nickname: "",
-      mail: "",
-      accessToken: "",
-      rol: "",
-      pswd: "", 
-     }
-    const rank: RankingModel = {
-      userplid: user,
-      points: this.points,
-      id: this.rankID,
+      document.getElementById("error-sub")!.style.display = "none";
+
+      Swal.fire({
+        title: 'Are you sure want to edit this ranking',
+        text: '',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, save it!',
+        confirmButtonColor: 'red',
+        cancelButtonText: 'No, keep it',
+        cancelButtonColor: 'black',
+      }).then((result) => {
+        if (result.value) {
+          this.endpoint.putRanking(rank, this.rankID).subscribe((data) => {
+            this.dialogRef.close();
+          }, (error_) => {
+            if (error_.status == 504) {
+              Swal.fire(
+                'Please try again later',
+                'We are currently experiencing unexpected problems with the server.',
+                'warning'
+              )
+            }
+            if (error_.status == 500) {
+              Swal.fire(
+                'Please try again later',
+                'Server validation error',
+                'warning'
+              )
+            }
+            if (error_.status == 401) {
+              Swal.fire(
+                'Unauthorized',
+                'please log in.',
+                'warning'
+              )
+            }
+          });
+        }
+      })
+    } else {
+      document.getElementById("error-sub")!.style.display = "block";
     }
+    // this.endpoint.putRanking(rank,this.rankID).subscribe((data)=>{
 
-    this.endpoint.putRanking(rank,this.rankID).subscribe((data)=>{
-
-    },(error)=>{
-      Swal.fire(
-        'Unexpected error',
-        'It is due to some problem with the server, please try again later.',
-        'warning'
-      )
-    });
-    this.dialogRef.close();
+    // },(error)=>{
+    //   Swal.fire(
+    //     'Unexpected error',
+    //     'It is due to some problem with the server, please try again later.',
+    //     'warning'
+    //   )
+    // });
+    // this.dialogRef.close();
   }
 }

@@ -12,9 +12,10 @@
             </div>
             <div>
                 <label>Points</label>
-                <input id="points" type="text" name="points" placeholder="Points" formControlName="points">
+                <input id="points" type="number" name="points" placeholder="Points" formControlName="points">
             </div>
         </form>
+        <p id="error-sub">Do not leave any field empty</p>
         <div class="sub-container">
             <button (click)="onNoClick()" class="cancel">Cancel</button>
             <button (click)="send()" class="send">Send</button>

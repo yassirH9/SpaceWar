@@ -14,11 +14,11 @@ import Swal from 'sweetalert2';
 })
 export class MasterAchEditDialogComponent {
   //input data
-  id:any;
+  id: any;
   name: any;
-  description:any;
+  description: any;
 
-  fulleditable:boolean;
+  fulleditable: boolean;
   //form group
   editForm = new FormGroup({
     id: new FormControl(''),
@@ -30,7 +30,7 @@ export class MasterAchEditDialogComponent {
     public dialogRef: MatDialogRef<MasterAchEditDialogComponent>,
     private endpoint: EndpointServiceService,
     @Inject(MAT_DIALOG_DATA) data: any,
-  ){
+  ) {
     //injet data
     this.id = data.id;
     this.name = data.name;
@@ -38,7 +38,7 @@ export class MasterAchEditDialogComponent {
 
     this.fulleditable = data.fullEditable;
   }
-  ngOnInit(){
+  ngOnInit() {
     //añadir valores injectados al formulario de edicion
     this.editForm.setValue({
       id: this.id,
@@ -47,35 +47,97 @@ export class MasterAchEditDialogComponent {
     });
 
     console.log(this.fulleditable);
-    if(this.fulleditable === true){
+    if (this.fulleditable === true) {
       document.getElementById('id')!.removeAttribute("readonly");
       //document.getElementById('name')!.removeAttribute("readonly");
     }
   }
-  onNoClick(){
+  onNoClick() {
     //cerrar formulario en caso de pulsar cancelar
     this.dialogRef.close();
   }
-  send(){
+  send() {
     this.id = this.editForm.get("id")!.value;
     this.name = this.editForm.get("name")!.value;
     this.description = this.editForm.get("description")!.value;
 
-    const MastAchivement ={
-      id:this.id,
+    const MastAchivement = {
+      id: this.id,
       name: this.name,
       description: this.description,
     }
+    if (this.id != "" && this.name != "" && this.description != "") {
+      document.getElementById("error-sub")!.style.display = "none";
+      Swal.fire({
+        title: 'Are you sure want to edit this master achivement',
+        text: '',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, save it!',
+        confirmButtonColor: 'red',
+        cancelButtonText: 'No, keep it',
+        cancelButtonColor: 'black',
+      }).then((result) => {
+        if (result.value) {
 
-    this.endpoint.putMasterAchivement(MastAchivement,this.id).subscribe((data)=>{
+          this.endpoint.putMasterAchivement(MastAchivement, this.id).subscribe((data) => {
 
-    },(error)=>{
-      Swal.fire(
-        'Unexpected error',
-        'It is due to some problem with the server, please try again later.',
-        'warning'
-      )
-    });
-    this.dialogRef.close();
+          }, (error_) => {
+            if (error_.status == 504) {
+              Swal.fire(
+                'Please try again later',
+                'We are currently experiencing unexpected problems with the server.',
+                'warning'
+              )
+            }
+            if (error_.status == 500) {
+              Swal.fire(
+                'Please try again later',
+                'Server validation error',
+                'warning'
+              )
+            }
+            if (error_.status == 401) {
+              Swal.fire(
+                'Unauthorized',
+                'please log in.',
+                'warning'
+              )
+            }
+          });
+          this.dialogRef.close();
+        } else {
+          document.getElementById("error-sub")!.style.display = "block";
+        }
+      })
+      //   this.endpoint.putMasterAchivement(MastAchivement, this.id).subscribe((data) => {
+
+      //   }, (error_) => {
+      //     if (error_.status == 504) {
+      //       Swal.fire(
+      //         'Please try again later',
+      //         'We are currently experiencing unexpected problems with the server.',
+      //         'warning'
+      //       )
+      //     }
+      //     if (error_.status == 500) {
+      //       Swal.fire(
+      //         'Please try again later',
+      //         'Server validation error',
+      //         'warning'
+      //       )
+      //     }
+      //     if (error_.status == 401) {
+      //       Swal.fire(
+      //         'Unauthorized',
+      //         'please log in.',
+      //         'warning'
+      //       )
+      //     }
+      //   });
+      //   this.dialogRef.close();
+      // }else{
+      //   document.getElementById("error-sub")!.style.display = "block";
+    }
   }
 }

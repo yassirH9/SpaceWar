@@ -64,6 +64,10 @@ export class AchivementEditDialogComponent {
     this.plid = this.editForm.get("plid")!.value;
     this.achid = this.editForm.get("achid")!.value;
 
+    if(this.plid != null && this.achid != null){
+
+      document.getElementById("error-sub")!.style.display = "none";
+
     const user: ILoginResponse = {
       plid: this.plid,
       nickname: "",
@@ -82,7 +86,6 @@ export class AchivementEditDialogComponent {
       masterAchivement: masterachivement,
       id: this.achid,
     }
-
     Swal.fire({
       title: 'Are you sure want to edit this achivement',
       text: '',
@@ -121,7 +124,9 @@ export class AchivementEditDialogComponent {
         });
       }
     })
-
+  }else{
+    document.getElementById("error-sub")!.style.display = "block";
+  }
     //-------------------------------------------
     //   this.endpoint.putAchivement(achivement,this.achid).subscribe((data) => {
 
