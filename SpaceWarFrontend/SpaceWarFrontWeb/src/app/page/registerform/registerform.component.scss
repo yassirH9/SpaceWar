@@ -9,8 +9,14 @@
 
 form div{
     margin: 2em;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     input{
+        max-width: 397px;
+        margin: 0 auto;
+
         background: rgba(217, 217, 217, 0.5);
         border: 1px solid #000000;
         border-radius: 15px;
@@ -26,6 +32,9 @@ form div{
         outline: none;
     }
     button{
+        max-width: 397px;
+        margin: 0 auto;
+
         background-color: rgba(0, 0, 0, 0.678);
         
         padding-left:  5em;
@@ -38,6 +47,14 @@ form div{
 
         font-size: 20px;
     }
+}
+label{
+    display: none;
+    margin-left: .5em;
+    color: red;
+}
+.inputerror{
+    border-color: red !important;
 }
 
 

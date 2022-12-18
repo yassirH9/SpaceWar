@@ -56,6 +56,10 @@
         text-align: center;
     }
 }
+#error {
+    color: red;
+    display: none;
+}
 
 .overflow {
     max-height: 200px;

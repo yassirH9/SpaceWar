@@ -39,7 +39,7 @@ public class Users implements Serializable {
     private Set<Achivement> achivements;
 
     //Roles de usuario
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL) //añadido cascada
+    @ManyToMany(fetch = FetchType.LAZY) //añadido cascada
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

@@ -128,7 +128,15 @@
             }
         }
     }
-
+    .validator{
+        display: flex;
+        flex-direction: column;
+        a{
+            display: none;
+            color: red;
+            margin-bottom: 1em;
+        }
+    }
     input[type="file"] {
         display: none;
     }
@@ -158,6 +166,7 @@
 
             label {
                 display: inline-flex;
+                justify-content: center;
                 width: 120px;
 
                 font-size: 1.2em;

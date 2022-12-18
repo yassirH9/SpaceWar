@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RankingModel } from 'src/app/models/RankingModel';
 import { EndpointServiceService } from 'src/app/service/endpoint-service.service';
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.component.html',
@@ -44,8 +44,36 @@ export class RankingComponent implements OnInit {
       );
       document.getElementById("error")!.style.display = "none";
     },
-    (error_)=>{
-      document.getElementById("error")!.style.display = "block";
+    (error_) => {
+      if (error_.status == 504) {
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+        document.getElementById("error")!.style.display = "block";
+      }
+      if (error_.status == 500) {
+        Swal.fire(
+          'Please try again later',
+          'Server validation error',
+          'warning'
+        )
+      }
+      if (error_.status == 504) {
+        Swal.fire(
+          'Please try again later',
+          'Server validation error',
+          'warning'
+        )
+      }
+      if (error_.status == 401) {
+        Swal.fire(
+          'Unauthorized',
+          'please log in.',
+          'warning'
+        )
+      }
     });
   }
 }

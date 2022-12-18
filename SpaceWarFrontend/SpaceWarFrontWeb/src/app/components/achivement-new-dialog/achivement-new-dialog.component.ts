@@ -8,6 +8,7 @@ import { ILogin } from 'src/app/models/ILogin';
 import { ILoginResponse } from 'src/app/models/ILoginResponse';
 import { MasterAchivement } from 'src/app/models/MasterAchivement';
 import { Achivement } from 'src/app/models/Achivement';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-achivement-new-dialog',
@@ -78,6 +79,12 @@ export class AchivementNewDialogComponent {
         
     this.endpoint.postAchivement(achivement).subscribe((data) => {
 
+    },(error)=>{
+      Swal.fire(
+        'Unexpected error',
+        'It is due to some problem with the server, please try again later.',
+        'warning'
+      )
     });
     this.dialogRef.close();
   }

@@ -3,12 +3,17 @@
     <form [formGroup]="register">
         <div>
             <input id="mail" type="email" name="mail" placeholder="Example@example.com" formControlName="mail">
+            <label id="mail-label" for="mail">This email is not valid try another one.</label>
         </div>
         <div>
             <input id="nickname" type="text" name="nickname" placeholder="Nickname" formControlName="nickname">
+            <label id="nickname-label1" for="nickname">This nickname is not valid try another one.</label>
+            <label id="nickname-label2" for="nickname">Must have a minimum of 6 characters.</label>
         </div>
         <div>
             <input id="password" type="password" name="password" placeholder="Password" formControlName="password">
+            <label id="pswd-label1" for="password">This password is not valid try another one.</label>
+            <label id="pswd-label2" for="password">Must have a minimum of 8 characters between letters, numbers and special characters.</label>
         </div>
         <div>
             <button (click)="onRegister()">Register</button>

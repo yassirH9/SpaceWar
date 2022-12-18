@@ -6,7 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { RankingModel } from 'src/app/models/RankingModel';
 import { ILogin } from 'src/app/models/ILogin';
 import { ILoginResponse } from 'src/app/models/ILoginResponse';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-ranking-edit-dialog',
   templateUrl: './ranking-edit-dialog.component.html',
@@ -79,6 +79,12 @@ export class RankingEditDialogComponent {
 
     this.endpoint.putRanking(rank,this.rankID).subscribe((data)=>{
 
+    },(error)=>{
+      Swal.fire(
+        'Unexpected error',
+        'It is due to some problem with the server, please try again later.',
+        'warning'
+      )
     });
     this.dialogRef.close();
   }

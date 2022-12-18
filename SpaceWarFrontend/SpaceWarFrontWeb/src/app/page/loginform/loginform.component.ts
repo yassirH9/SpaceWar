@@ -9,7 +9,7 @@ import { StorageserviceService } from '../../service/TokenService/storageservice
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
 import { Router } from '@angular/router';
 import { ImageserviceService } from 'src/app/service/imageservice.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-loginform',
   templateUrl: './loginform.component.html',
@@ -62,6 +62,29 @@ export class LoginformComponent implements OnInit {
       })
 
       this.route.navigateByUrl("/ranking");
+    },(error_)=>{
+      if(error_.status==500){
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+      }
+      if(error_.status==504){
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+      }
+      if(error_.status==401){
+        Swal.fire(
+          'Incorrect username or password',
+          'Try again and if you do not remember your password or user name, please contact an administrator.',
+          'warning'
+        )
+      }
+      
     });
     //window.location.href="/ranking";
   }

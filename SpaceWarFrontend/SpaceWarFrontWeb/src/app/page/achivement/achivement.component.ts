@@ -4,6 +4,7 @@ import { Achivement } from 'src/app/models/Achivement';
 import { MasterAchivement } from 'src/app/models/MasterAchivement';
 import { EndpointServiceService } from 'src/app/service/endpoint-service.service';
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-achivement',
@@ -36,15 +37,90 @@ export class AchivementComponent {
     //obtencion de todos los logros maestros para la comparacion
     this.endpoint.getAllMasterAchivement().subscribe((data) => {
       this.masterAch = data;
+      document.getElementById("error")!.style.display = "none";
+    },
+    (error_) => {
+      if (error_.status == 504) {
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+        document.getElementById("error")!.style.display = "block";
+      }
+      if (error_.status == 500) {
+        Swal.fire(
+          'Please try again later',
+          'Server validation error',
+          'warning'
+        )
+      }
+      if (error_.status == 401) {
+        Swal.fire(
+          'Unauthorized',
+          'please log in.',
+          'warning'
+        )
+      }
     });
     this.endpoint.getAllAchivement().subscribe((data) => {
       this.AllAchivement = data;
+      document.getElementById("error")!.style.display = "none";
+    },
+    (error_) => {
+      if (error_.status == 504) {
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+        document.getElementById("error")!.style.display = "block";
+      }
+      if (error_.status == 500) {
+        Swal.fire(
+          'Please try again later',
+          'Server validation error',
+          'warning'
+        )
+      }
+      if (error_.status == 401) {
+        Swal.fire(
+          'Unauthorized',
+          'please log in.',
+          'warning'
+        )
+      }
     });
 
     //el back da los achivement del usuario concreto
     this.endpoint.getAllAchivementByUser(window.sessionStorage.getItem("user-id")!).subscribe(data => {
       // console.log(data);
       this.UserAch = data;
+      document.getElementById("error")!.style.display = "none";
+    },
+    (error_) => {
+      if (error_.status == 504) {
+        Swal.fire(
+          'Please try again later',
+          'We are currently experiencing unexpected problems with the server.',
+          'warning'
+        )
+        document.getElementById("error")!.style.display = "block";
+      }
+      if (error_.status == 500) {
+        Swal.fire(
+          'Please try again later',
+          'Server validation error',
+          'warning'
+        )
+      }
+      if (error_.status == 401) {
+        Swal.fire(
+          'Unauthorized',
+          'please log in.',
+          'warning'
+        )
+      }
     })
   }
 
