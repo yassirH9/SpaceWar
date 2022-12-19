@@ -19,6 +19,11 @@
                 <input id="password" type="text" name="password" placeholder="password" formControlName="password">
             </div>
         </form>
+        <a class="error-sub" id="pswd-label1" for="password">This password is not valid try another one.</a>
+        <a class="error-sub" id="pswd-label2" for="password">Must have a minimum of 8 characters between letters, numbers and special characters.</a>
+        <a class="error-sub" id="nickname-label1" for="nickname">This nickname is not valid try another one.</a>
+        <a class="error-sub" id="nickname-label2" for="nickname">Must have a minimum of 6 characters.</a>
+        <a class="error-sub" id="mail-label" for="mail">This email is not valid try another one.</a>
         <div class="sub-container">
             <button (click)="onNoClick()" class="cancel">Cancel</button>
             <button (click)="send()" class="send">Send</button>
