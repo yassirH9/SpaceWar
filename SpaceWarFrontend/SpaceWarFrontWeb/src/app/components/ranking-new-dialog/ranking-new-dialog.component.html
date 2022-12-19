@@ -1,0 +1,21 @@
+<div class="modal-container">
+    <h1>Ranking Create</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>PLID</label>
+                <input id="id" type="number" name="id" placeholder="ID" formControlName="plid">
+            </div>
+            <div>
+                <label>Points</label>
+                <input id="points" type="number" name="points" placeholder="Points" formControlName="points">
+            </div>
+        </form>
+        <p id="error-sub">Do not leave any field empty</p>
+
+        <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>

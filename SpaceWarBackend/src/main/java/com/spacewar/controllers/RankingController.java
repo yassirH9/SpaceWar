@@ -12,11 +12,13 @@ import java.util.List;
 @RestController
 @Api(tags = "rankings")
 @CrossOrigin(value = "*")
+//TEST cambio en endpoint para evitar CORSq
+@RequestMapping("/api")
 public class RankingController {
 
     @Autowired
     private RankingService rankingService;
-    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
+    //@PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     @GetMapping("/ranking")
     public List<Ranking> getAllRanking() {
         return rankingService.getAll();

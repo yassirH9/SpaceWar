@@ -19,6 +19,7 @@ import java.util.UUID;
 @RestController
 //@CrossOrigin(origins = "http://localhost:8082") open for specific port
 @CrossOrigin() // open for all ports
+@RequestMapping("/api")
 public class ImageController {
     @Autowired
     ImageRepository imageRepository;
@@ -66,16 +67,28 @@ public class ImageController {
                 .body(ImageUtility.decompressImage(dbImage.get().getImage()));
     }
 
+//    @GetMapping(path = {"/get/image/user/{plid}"})
+//    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
+//    public ResponseEntity<byte[]> getImageByPLID(@PathVariable("plid") long PLID) throws IOException {
+//
+//        final Optional<Image> dbImage = imageRepository.findByPlid(PLID);
+//        return ResponseEntity
+//                .ok()
+//                .contentType(MediaType.valueOf(dbImage.get().getType()))
+//                .body(ImageUtility.decompressImage(dbImage.get().getImage()));
+//    }
     @GetMapping(path = {"/get/image/user/{plid}"})
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
-    public ResponseEntity<byte[]> getImageByPLID(@PathVariable("plid") long PLID) throws IOException {
+    public Image getImageByPLID(@PathVariable("plid") long PLID) throws IOException {
 
         final Optional<Image> dbImage = imageRepository.findByPlid(PLID);
+        final Optional<Image> dbImage_ = imageRepository.findByName(dbImage.get().getName());
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.valueOf(dbImage.get().getType()))
-                .body(ImageUtility.decompressImage(dbImage.get().getImage()));
+        return Image.builder()
+                .name(dbImage_.get().getName())
+                .type(dbImage_.get().getType())
+                .image(ImageUtility.decompressImage(dbImage_.get().getImage()))
+                .plid(dbImage_.get().getPlid()).build();
     }
 
     @PutMapping("/put/image/")

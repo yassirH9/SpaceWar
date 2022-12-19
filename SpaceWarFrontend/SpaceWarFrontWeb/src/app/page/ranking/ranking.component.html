@@ -1,0 +1,22 @@
+<div class="main-container">
+    <h1>Ranking Table</h1>
+    <div class="inner-container">
+        <h2 id="error">Service failure please try again.</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td class="hidden">User ID</td>
+                    <td>Nickname</td>
+                    <td>Points</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of rankingData" class="tr-anim">
+                    <td class="hidden">{{x.userplid.plid}}</td>
+                    <td>{{x.userplid.nickname}}</td>
+                    <td>{{x.points}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

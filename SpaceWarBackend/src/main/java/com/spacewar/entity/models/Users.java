@@ -27,19 +27,19 @@ public class Users implements Serializable {
     String NICKNAME;
 
     //relacion con ranking
-    @OneToOne(mappedBy = "userplid")
+    @OneToOne(mappedBy = "userplid",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Ranking rank;
     //relacion con archivement
 //    @ManyToOne
 //    @JoinColumn(name = "usersSet",nullable = false)
 //    private Archivement archivement;
-    @OneToMany(mappedBy = "userm")
+    @OneToMany(mappedBy = "userm",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<Achivement> achivements;
 
     //Roles de usuario
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) //añadido cascada
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -109,5 +109,12 @@ public class Users implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    //16/12/22
+    //added to change role from user or add new one
+    public void setRole(Role roles) {
+        this.roles.add((roles));
     }
 }

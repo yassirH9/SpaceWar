@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(value = "*")
-
+@RequestMapping("/api")
 public class MasterAchivementController {
     @Autowired
     MasterAchivementService masterArchivementService;

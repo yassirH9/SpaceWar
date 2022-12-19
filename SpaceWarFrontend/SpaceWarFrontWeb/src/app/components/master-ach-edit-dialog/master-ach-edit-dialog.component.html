@@ -1,0 +1,24 @@
+<div class="modal-container">
+    <h1>Master Achivement Edit</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>Masteter Ach. ID</label>
+                <input id="id" type="text" name="id" placeholder="ID" formControlName="id" readonly>
+            </div>
+            <div>
+                <label>Name</label>
+                <input id="name" type="text" name="name" placeholder="Name" formControlName="name">
+            </div>
+            <div>
+                <label>Description</label>
+                <input id="description" type="text" name="description" placeholder="Description" formControlName="description">
+            </div>
+        </form>
+        <p id="error-sub">Do not leave any field empty</p>
+        <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>
