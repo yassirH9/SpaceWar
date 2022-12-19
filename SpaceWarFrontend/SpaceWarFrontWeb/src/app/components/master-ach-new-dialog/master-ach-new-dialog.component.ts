@@ -69,7 +69,13 @@ export class MasterAchNewDialogComponent {
       }
 
       this.endpoint.postMasterAchivement(MastAchivement).subscribe((data) => {
-
+        Swal.fire(
+          'New master achievement created',
+          '',
+          'success'
+        ).then((data)=>{
+          this.dialogRef.close();
+        })
       }, (error_) => {
         if (error_.status == 504) {
           Swal.fire(
@@ -93,8 +99,6 @@ export class MasterAchNewDialogComponent {
           )
         }
       });
-      this.dialogRef.close();
-
     }else{
       document.getElementById("error-sub")!.style.display = "block";
     }

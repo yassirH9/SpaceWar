@@ -109,7 +109,13 @@ export class UserEditDialogComponent implements OnInit {
 
       console.log(user);
       this.endpoint.putUser(this.plid, user).subscribe(data => {
-        this.dialogRef.close();
+        Swal.fire(
+          'User edited',
+          '',
+          'success'
+        ).then((data)=>{
+          this.dialogRef.close();
+        })
       },(error_) => {
         if (error_.status == 504) {
           Swal.fire(

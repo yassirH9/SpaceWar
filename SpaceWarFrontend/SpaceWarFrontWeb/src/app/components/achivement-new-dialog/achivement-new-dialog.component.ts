@@ -82,8 +82,13 @@ export class AchivementNewDialogComponent {
       }
 
       this.endpoint.postAchivement(achivement).subscribe((data) => {
-        this.dialogRef.close();
-
+        Swal.fire(
+          'New achievement created',
+          '',
+          'success'
+        ).then((data)=>{
+          this.dialogRef.close();
+        })
       }, (error_) => {
         if (error_.status == 504) {
           Swal.fire(

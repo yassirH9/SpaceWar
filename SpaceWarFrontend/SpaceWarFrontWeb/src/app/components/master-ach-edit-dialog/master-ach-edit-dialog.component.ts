@@ -81,7 +81,13 @@ export class MasterAchEditDialogComponent {
         if (result.value) {
 
           this.endpoint.putMasterAchivement(MastAchivement, this.id).subscribe((data) => {
-
+            Swal.fire(
+              'Master achivement edited',
+              '',
+              'success'
+            ).then((data)=>{
+              this.dialogRef.close();
+            })
           }, (error_) => {
             if (error_.status == 504) {
               Swal.fire(
@@ -105,7 +111,6 @@ export class MasterAchEditDialogComponent {
               )
             }
           });
-          this.dialogRef.close();
         } else {
           document.getElementById("error-sub")!.style.display = "block";
         }

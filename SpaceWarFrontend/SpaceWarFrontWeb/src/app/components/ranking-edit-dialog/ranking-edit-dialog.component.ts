@@ -92,7 +92,13 @@ export class RankingEditDialogComponent {
       }).then((result) => {
         if (result.value) {
           this.endpoint.putRanking(rank, this.rankID).subscribe((data) => {
-            this.dialogRef.close();
+            Swal.fire(
+              'Ranking edited',
+              '',
+              'success'
+            ).then((data)=>{
+              this.dialogRef.close();
+            })
           }, (error_) => {
             if (error_.status == 504) {
               Swal.fire(

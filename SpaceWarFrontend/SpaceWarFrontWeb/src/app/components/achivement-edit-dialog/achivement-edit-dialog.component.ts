@@ -98,7 +98,13 @@ export class AchivementEditDialogComponent {
     }).then((result) => {
       if (result.value) {
         this.endpoint.putAchivement(achivement, this.achid).subscribe((data) => {
-          this.dialogRef.close();
+          Swal.fire(
+            'Achivement edited',
+            '',
+            'success'
+          ).then((data)=>{
+            this.dialogRef.close();
+          })
         }, (error_) => {
           if (error_.status == 504) {
             Swal.fire(

@@ -83,7 +83,13 @@ export class RankingNewDialogComponent {
    }
 
    this.endpoint.postRanking(rank).subscribe((data)=>{
-    this.dialogRef.close();
+    Swal.fire(
+      'New ranking created',
+      '',
+      'success'
+    ).then((data)=>{
+      this.dialogRef.close();
+    })
    },(error_)=>{
     if (error_.status == 504) {
       Swal.fire(
