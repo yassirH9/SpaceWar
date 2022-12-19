@@ -189,18 +189,29 @@ In the following use case you can see three main roles with their functions and 
 </p>
 
 ## Technical requirements
-
-
+#### BackEnd
+- RAM: Minimum 3GB free ram.
+- ROM: 1GB free space.
+- CPU: I5 or derivatives thereafter.
+- GPU: N/A
+- Other requirements
+    - MySQL or SQL-derived servers.
+    - IntelliJ or Eclipse to run backend
+#### FrontEnd
+- Visual Studio code to run a front-End web server
+- Web Browser [Chrome, Brave or derived].
+    - This web application is optimized for mobile devices.
 ## Interface
-
-### First design idea
-
-    [figma link]
-
+#### First design idea
+[Link to see mockups and design in figma.](https://www.figma.com/file/2MKemHpBx1IHK3T7tlcxpN/Untitled?node-id=0%3A1&t=l5M5d8fELxULJaG3-1)
 ### Accessibility and usability documentation
 
 ## Technology stack
+For this project I have used the following technology stack.
 
+[![Angular][angular2.io]][angular.url]
+
+[![Spring][spring2.io]][spring.url]
 
 ## Technology selection
 
