@@ -1,17 +1,12 @@
 
 <div style="text-align: center;">
 
-# Título
+<img src="./logo.png" alt="Project logo" width="200"/>
 
 </div>
 
 # Space War Full-Stack Game
 
-<br>
-<img src="./logo.png" alt="Project logo" width="200"/>
-
-<br>
-<br>
 
 [![GitHub stars](https://img.shields.io/github/stars/NombreUsuario/NombreRepositorio.svg)](https://github.com/yassirH9/SpaceWar)
 
