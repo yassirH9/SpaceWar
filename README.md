@@ -1,4 +1,9 @@
-<center>
+
+<div style="text-align: center;">
+
+# Título
+
+</div>
 
 # Space War Full-Stack Game
 
@@ -10,8 +15,6 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/NombreUsuario/NombreRepositorio.svg)](https://github.com/yassirH9/SpaceWar)
 
-
-</center>
 
 ## Descripción
 
