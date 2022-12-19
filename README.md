@@ -3,8 +3,7 @@
 
   <h3 align="center">SpaceWar FullStack Game</h3>
 
-  [![GitHub](https://img.shields.io/badge/GitHub-YassirCH-4cbbb9.svg)](https://github.com/yassirH9)
-
+  [![GitHub](https://img.shields.io/badge/GitHub-YassirCH-green.svg)](https://github.com/yassirH9)
 </div>
 
 
