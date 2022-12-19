@@ -1,14 +1,11 @@
+<div align="center">
+    <img src="./logo.png" alt="Logo" width="240">
 
-<div style="text-align: center;">
+  <h3 align="center">SpaceWar FullStack Game</h3>
 
-<img src="./logo.png" alt="Project logo" width="200"/>
+  [![GitHub](https://img.shields.io/badge/GitHub-YassirCH-4cbbb9.svg)](https://github.com/yassirH9)
 
 </div>
-
-# Space War Full-Stack Game
-
-
-[![GitHub stars](https://img.shields.io/github/stars/NombreUsuario/NombreRepositorio.svg)](https://github.com/yassirH9/SpaceWar)
 
 
 ## Descripción
