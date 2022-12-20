@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Achivement } from 'src/app/models/Achivement';
 import { MasterAchivement } from 'src/app/models/MasterAchivement';
@@ -26,7 +27,26 @@ export class AchivementComponent {
   ) {
 
   }
+
+  isTogled: boolean = false;
+  togledButtonText: string = 'See only unlocked';
+  changeVisibleAchivement(){
+    if (window.sessionStorage.getItem("is-togled")! === 'true'){
+      window.sessionStorage.setItem("is-togled",'false');
+      window.location.reload();
+    }else{
+      window.sessionStorage.setItem("is-togled",'true');
+      window.location.reload();
+    }
+  }
   ngOnInit(): void {
+    if (window.sessionStorage.getItem("is-togled")! === 'true'){
+      this.isTogled = true;
+      this.togledButtonText = 'See All';
+    }else{
+      this.isTogled = false;
+    }
+
     //loguea tras recargar los datos cambiados
     if (window.localStorage.getItem("ROLE") != null) {
       this.role.login(window.localStorage.getItem("ROLE")!);
@@ -39,58 +59,58 @@ export class AchivementComponent {
       this.masterAch = data;
       document.getElementById("error")!.style.display = "none";
     },
-    (error_) => {
-      if (error_.status == 504) {
-        Swal.fire(
-          'Please try again later',
-          'We are currently experiencing unexpected problems with the server.',
-          'warning'
-        )
-        document.getElementById("error")!.style.display = "block";
-      }
-      if (error_.status == 500) {
-        Swal.fire(
-          'Please try again later',
-          'Server validation error',
-          'warning'
-        )
-      }
-      if (error_.status == 401) {
-        Swal.fire(
-          'Unauthorized',
-          'please log in.',
-          'warning'
-        )
-      }
-    });
+      (error_) => {
+        if (error_.status == 504) {
+          Swal.fire(
+            'Please try again later',
+            'We are currently experiencing unexpected problems with the server.',
+            'warning'
+          )
+          document.getElementById("error")!.style.display = "block";
+        }
+        if (error_.status == 500) {
+          Swal.fire(
+            'Please try again later',
+            'Server validation error',
+            'warning'
+          )
+        }
+        if (error_.status == 401) {
+          Swal.fire(
+            'Unauthorized',
+            'please log in.',
+            'warning'
+          )
+        }
+      });
     this.endpoint.getAllAchivement().subscribe((data) => {
       this.AllAchivement = data;
       document.getElementById("error")!.style.display = "none";
     },
-    (error_) => {
-      if (error_.status == 504) {
-        Swal.fire(
-          'Please try again later',
-          'We are currently experiencing unexpected problems with the server.',
-          'warning'
-        )
-        document.getElementById("error")!.style.display = "block";
-      }
-      if (error_.status == 500) {
-        Swal.fire(
-          'Please try again later',
-          'Server validation error',
-          'warning'
-        )
-      }
-      if (error_.status == 401) {
-        Swal.fire(
-          'Unauthorized',
-          'please log in.',
-          'warning'
-        )
-      }
-    });
+      (error_) => {
+        if (error_.status == 504) {
+          Swal.fire(
+            'Please try again later',
+            'We are currently experiencing unexpected problems with the server.',
+            'warning'
+          )
+          document.getElementById("error")!.style.display = "block";
+        }
+        if (error_.status == 500) {
+          Swal.fire(
+            'Please try again later',
+            'Server validation error',
+            'warning'
+          )
+        }
+        if (error_.status == 401) {
+          Swal.fire(
+            'Unauthorized',
+            'please log in.',
+            'warning'
+          )
+        }
+      });
 
     //el back da los achivement del usuario concreto
     this.endpoint.getAllAchivementByUser(window.sessionStorage.getItem("user-id")!).subscribe(data => {
@@ -98,34 +118,34 @@ export class AchivementComponent {
       this.UserAch = data;
       document.getElementById("error")!.style.display = "none";
     },
-    (error_) => {
-      if (error_.status == 504) {
-        Swal.fire(
-          'Please try again later',
-          'We are currently experiencing unexpected problems with the server.',
-          'warning'
-        )
-        document.getElementById("error")!.style.display = "block";
-      }
-      if (error_.status == 500) {
-        Swal.fire(
-          'Please try again later',
-          'Server validation error',
-          'warning'
-        )
-      }
-      if (error_.status == 401) {
-        Swal.fire(
-          'Unauthorized',
-          'please log in.',
-          'warning'
-        )
-      }
-    })
+      (error_) => {
+        if (error_.status == 504) {
+          Swal.fire(
+            'Please try again later',
+            'We are currently experiencing unexpected problems with the server.',
+            'warning'
+          )
+          document.getElementById("error")!.style.display = "block";
+        }
+        if (error_.status == 500) {
+          Swal.fire(
+            'Please try again later',
+            'Server validation error',
+            'warning'
+          )
+        }
+        if (error_.status == 401) {
+          Swal.fire(
+            'Unauthorized',
+            'please log in.',
+            'warning'
+          )
+        }
+      })
   }
 
   AchivementExist(MastAchID: string) {
-    let result:boolean;
+    let result: boolean;
 
     this.UserAch.forEach((data) => {
       if (data.masterAchivement.id === MastAchID) {
@@ -133,6 +153,21 @@ export class AchivementComponent {
       }
     })
     // console.log(result!);
+    return result!;
+  }
+  //con este metodo se realiza un cambio de configuracion o filtro que te permite ver solo los logros que tienes
+  //o todos los logros en general los tengas o no
+  isTogledComprobator(MastAchID: string) {
+    let result: boolean;
+    if (this.isTogled === true) {
+      this.UserAch.forEach((data) => {
+        if (data.masterAchivement.id === MastAchID) {
+          result = true;
+        }
+      })
+    } else {
+      result = true;
+    }
     return result!;
   }
 }
