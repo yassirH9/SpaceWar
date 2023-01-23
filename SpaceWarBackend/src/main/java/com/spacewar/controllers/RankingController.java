@@ -1,6 +1,7 @@
 package com.spacewar.controllers;
 
 import com.spacewar.entity.models.Ranking;
+import com.spacewar.entity.models.Users;
 import com.spacewar.entity.services.impl.RankingService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,19 @@ public class RankingController {
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public Ranking getRanking(@PathVariable(value = "id") Long id) {
         return rankingService.get(id);
+    }
+    //Added to search ranking by user
+    @GetMapping("/ranking/plid/{plid}")
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
+    public Ranking getRankingByUser(@PathVariable(value = "plid") Long id) {
+        List<Ranking> ranks = rankingService.getAll();
+        Ranking returned = null;
+          for (Ranking i : ranks){
+            if(i.getUserplid().getPLID() == id){
+                returned = i;
+            }
+        }
+        return returned;
     }
 
     @PostMapping("/ranking")

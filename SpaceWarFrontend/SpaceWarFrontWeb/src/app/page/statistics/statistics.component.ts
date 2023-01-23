@@ -29,8 +29,13 @@ export class StatisticsComponent implements OnInit {
 
   getDataTable(){
     let plid = window.sessionStorage.getItem("user-id")!;
-    this.service.getRanking(plid).subscribe(data=>{
-      this.score = data.points;
+    this.service.getRankingByPlid(plid).subscribe(data=>{
+      if(data != null){
+        this.score = data.points;
+      }else{
+        this.score = 0;
+      }    
+       
       document.getElementById("error")!.style.display = "none";
     },(error_) => {
       if (error_.status == 504) {

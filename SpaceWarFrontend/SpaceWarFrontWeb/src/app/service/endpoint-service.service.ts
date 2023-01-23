@@ -28,6 +28,9 @@ export class EndpointServiceService {
   getRanking(plid: string) {
     return this.HttpClient.get<RankingModel>("/api/ranking/" + plid);
   }
+  getRankingByPlid(plid:string){
+    return this.HttpClient.get<RankingModel>("/api/ranking/plid/"+plid);
+  }
   putRanking(rank: RankingModel, id: number) {
     let body = new URLSearchParams();
     body.set("POINTS", rank.points.toString());

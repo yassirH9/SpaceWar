@@ -26,6 +26,8 @@ import { AchivementEditDialogComponent } from './components/achivement-edit-dial
 import { AchivementNewDialogComponent } from './components/achivement-new-dialog/achivement-new-dialog.component';
 import { AchivementComponent } from './page/achivement/achivement.component';
 import { UserDataComponent } from './page/user-data/user-data.component';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,

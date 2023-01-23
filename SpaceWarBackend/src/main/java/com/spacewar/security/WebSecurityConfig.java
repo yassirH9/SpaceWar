@@ -43,7 +43,9 @@ public class WebSecurityConfig {
             "/swagger-ui/**",
             "/api/auth/**",
             // -- API White list
-            "/api/ranking"
+            "/api/ranking",
+            // -- Report White list
+            "/api/report"
     };
     @Autowired
     UserDetailsServiceImpl userDetailsService;

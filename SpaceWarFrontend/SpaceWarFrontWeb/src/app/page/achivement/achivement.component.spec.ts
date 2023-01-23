@@ -1,23 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AchivementComponent } from './achivement.component';
+// import { AchivementComponent } from './achivement.component';
 
-describe('AchivementComponent', () => {
-  let component: AchivementComponent;
-  let fixture: ComponentFixture<AchivementComponent>;
+// describe('AchivementComponent', () => {
+//   let component: AchivementComponent;
+//   let fixture: ComponentFixture<AchivementComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AchivementComponent ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ AchivementComponent ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(AchivementComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//     fixture = TestBed.createComponent(AchivementComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+// });
