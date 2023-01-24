@@ -1,3 +1,4 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,21 @@ import { Injectable } from '@angular/core';
 })
 export class ReportServiceService {
 
-  constructor() { }
+  constructor(private HttpClient:HttpClient) { }
+
+  //get a report without chart report
+  getRReport(){
+    return this.HttpClient.get("/api/report", { responseType: 'blob' });
+  }
+  //get a report with chart
+  getRReportChart(){
+    return this.HttpClient.get("/api/report/chart", { responseType: 'blob' });
+  }
+  //semd a report by email
+  SendReport(email:string){
+    return this.HttpClient.get("/api/report/send/"+email);
+  }
+  SendReportChart(email:string){
+    return this.HttpClient.get("/api/report/send/chart/"+email);
+  }
 }

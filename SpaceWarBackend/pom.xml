@@ -122,7 +122,11 @@
 			<artifactId>jasperreports</artifactId>
 			<version>6.18.1</version>
 		</dependency>
-
+		<!--SMTP-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<!-- JasperSoft, they modified a standard library for their own special needs -->

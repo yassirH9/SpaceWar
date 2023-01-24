@@ -27,6 +27,10 @@ import { AchivementNewDialogComponent } from './components/achivement-new-dialog
 import { AchivementComponent } from './page/achivement/achivement.component';
 import { UserDataComponent } from './page/user-data/user-data.component';
 import { CommonModule } from '@angular/common';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { SendEmailDialogComponent } from './components/send-email-dialog/send-email-dialog.component';
+import { SendEmailDialogChartComponent } from './components/send-email-dialog-chart/send-email-dialog-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +52,8 @@ import { CommonModule } from '@angular/common';
     AchivementNewDialogComponent,
     AchivementComponent,
     UserDataComponent,
+    SendEmailDialogComponent,
+    SendEmailDialogChartComponent,
   ],
   imports: [
     BrowserModule,

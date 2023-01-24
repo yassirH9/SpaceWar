@@ -4,6 +4,13 @@ import { RankingModel } from 'src/app/models/RankingModel';
 import { EndpointServiceService } from 'src/app/service/endpoint-service.service';
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ReportServiceService } from 'src/app/service/ReportService/report-service.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl } from '@angular/forms';
+import { SendEmailDialogChartComponent } from 'src/app/components/send-email-dialog-chart/send-email-dialog-chart.component';
+import { SendEmailDialogComponent } from 'src/app/components/send-email-dialog/send-email-dialog.component';
 
 @Component({
   selector: 'app-ranking',
@@ -18,6 +25,9 @@ export class RankingComponent implements OnInit {
     private roleservice: RoleserviceService,
     private role: RoleserviceService,
     private route: Router,
+    private report: ReportServiceService,
+    private mDialog: MatDialog,
+
   ) { }
   ngOnInit(): void {
     //loguea tras recargar los datos cambiados
@@ -75,5 +85,39 @@ export class RankingComponent implements OnInit {
           )
         }
       });
+  }
+
+  checkboxControl = new FormControl(false);
+  DownloadReport() {
+    if (this.checkboxControl.value) {
+      this.report.getRReportChart().subscribe((response) => {
+        const fileURL = URL.createObjectURL(response);
+        window.open(fileURL, '_blank');
+      })
+    } else {
+      this.report.getRReport().subscribe((response) => {
+        const fileURL = URL.createObjectURL(response);
+        window.open(fileURL, '_blank');
+      })
+    }
+
+  }
+  SendReport(){
+    console.log("send email");
+    if(this.checkboxControl.value){
+      this.mDialog.open(SendEmailDialogChartComponent, {
+        width: '500px',
+        height: '400px',
+      }).beforeClosed().subscribe(data => {
+
+      });
+    }else{
+      this.mDialog.open(SendEmailDialogComponent, {
+        width: '500px',
+        height: '400px',
+      }).beforeClosed().subscribe(data => {
+
+      });
+    }
   }
 }

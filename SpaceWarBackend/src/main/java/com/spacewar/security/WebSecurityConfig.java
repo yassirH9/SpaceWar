@@ -45,7 +45,7 @@ public class WebSecurityConfig {
             // -- API White list
             "/api/ranking",
             // -- Report White list
-            "/api/report"
+            "/api/report/**"
     };
     @Autowired
     UserDetailsServiceImpl userDetailsService;

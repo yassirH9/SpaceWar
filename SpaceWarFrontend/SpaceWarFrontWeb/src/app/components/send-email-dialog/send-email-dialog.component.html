@@ -1,0 +1,15 @@
+<div class="modal-container">
+    <h1>Send report by email</h1>
+    <div class="main-container">
+        <form [formGroup]="editForm">
+            <div>
+                <label>Email</label>
+                <input id="mail" type="text" name="mail" placeholder="Mail" formControlName="email">
+            </div>
+        </form>
+            <div class="sub-container">
+            <button (click)="onNoClick()" class="cancel">Cancel</button>
+            <button (click)="send()" class="send">Send</button>
+        </div>
+    </div>
+</div>
