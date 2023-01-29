@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    ports:
+      - "3306:3306"
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=Root_123/123
+      - MYSQL_DATABASE=db_proyecto_final2
+      # - MYSQL_USER=spacewaruser
+      # - MYSQL_PASSWORD=Root_123
+  app:
+    image: 'spacewar-backend:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/db_proyecto_final2
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Root_123/123
+
+      ## para hacer el primer docker-compose up descomentar esta linea y comentar la siguiente para añadir
+      ## las estructuras necesarias a la base de datos. Tras el primer inicio comentar esta linea y descomentar
+      ## la siguiente y por ultimo usar el comando docker-compose up para actualizar la configuracion.
+
+      # - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+    depends_on:
+      - db
