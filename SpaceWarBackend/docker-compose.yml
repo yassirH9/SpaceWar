@@ -27,7 +27,7 @@ services:
       ## las estructuras necesarias a la base de datos. Tras el primer inicio comentar esta linea y descomentar
       ## la siguiente y por ultimo usar el comando docker-compose up para actualizar la configuracion.
 
-      # - SPRING_JPA_HIBERNATE_DDL_AUTO=create
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      # - SPRING_JPA_HIBERNATE_DDL_AUTO=none
     depends_on:
       - db
