@@ -8,13 +8,13 @@ import { IRegister } from '../models/IRegister';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  enpoint:string="localhost:8080/";
+  enpoint:string="https://localhost:443";
   constructor(private http: HttpClient) { }
 
   login(userdata: ILogin){
-    return this.http.post<ILoginResponse>("/api/auth/signin",userdata);
+    return this.http.post<ILoginResponse>(this.enpoint+"/api/auth/signin",userdata);
   }
   register(userdata:IRegister){
-    return this.http.post<any>("/api/auth/signup",userdata);
+    return this.http.post<any>(this.enpoint+"/api/auth/signup",userdata);
   }
 }

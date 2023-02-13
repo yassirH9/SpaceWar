@@ -5,22 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ReportServiceService {
+  enpoint:string="https://localhost:443";
 
   constructor(private HttpClient:HttpClient) { }
 
   //get a report without chart report
   getRReport(){
-    return this.HttpClient.get("/api/report", { responseType: 'blob' });
+    return this.HttpClient.get(this.enpoint+"/api/report", { responseType: 'blob' });
   }
   //get a report with chart
   getRReportChart(){
-    return this.HttpClient.get("/api/report/chart", { responseType: 'blob' });
+    return this.HttpClient.get(this.enpoint+"/api/report/chart", { responseType: 'blob' });
   }
   //semd a report by email
   SendReport(email:string){
-    return this.HttpClient.get("/api/report/send/"+email);
+    return this.HttpClient.get(this.enpoint+"/api/report/send/"+email);
   }
   SendReportChart(email:string){
-    return this.HttpClient.get("/api/report/send/chart/"+email);
+    return this.HttpClient.get(this.enpoint+"/api/report/send/chart/"+email);
   }
 }

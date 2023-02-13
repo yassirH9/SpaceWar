@@ -19,17 +19,17 @@ import { IImage } from '../models/IImage';
 export class EndpointServiceService {
   //instancia del modulo httpclient
   constructor(private HttpClient: HttpClient) { }
-
+  enpoint:string="https://localhost:443";
   //---------------------------------------------------------
   //Ranking
   getAllRanking() {
-    return this.HttpClient.get<Array<RankingModel>>("/api/ranking");
+    return this.HttpClient.get<Array<RankingModel>>(this.enpoint+"/api/ranking");
   }
   getRanking(plid: string) {
-    return this.HttpClient.get<RankingModel>("/api/ranking/" + plid);
+    return this.HttpClient.get<RankingModel>(this.enpoint+"/api/ranking/" + plid);
   }
   getRankingByPlid(plid:string){
-    return this.HttpClient.get<RankingModel>("/api/ranking/plid/"+plid);
+    return this.HttpClient.get<RankingModel>(this.enpoint+"/api/ranking/plid/"+plid);
   }
   putRanking(rank: RankingModel, id: number) {
     let body = new URLSearchParams();
@@ -39,7 +39,7 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/ranking/' + id, body.toString(), options);
+    return this.HttpClient.put(this.enpoint+'/api/ranking/' + id, body.toString(), options);
   }
   postRanking(rank: RankingModel) {
     let body = new URLSearchParams();
@@ -49,19 +49,19 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.post('/api/ranking', body.toString(), options);
+    return this.HttpClient.post(this.enpoint+'/api/ranking', body.toString(), options);
   }
   delRanking(id: number) {
-    return this.HttpClient.delete("/api/ranking/" + id);
+    return this.HttpClient.delete(this.enpoint+"/api/ranking/" + id);
   }
   //---------------------------------------------------------
   //User
   //NOTA: el usuario tiene crud completo con el registro(POST)
   getAllUser() {
-    return this.HttpClient.get<Array<ILoginResponse>>("/api/user");
+    return this.HttpClient.get<Array<ILoginResponse>>(this.enpoint+"/api/user");
   }
   getUser(plid: string) {
-    return this.HttpClient.get<ILoginResponse>("/api/user/" + plid);
+    return this.HttpClient.get<ILoginResponse>(this.enpoint+"/api/user/" + plid);
   }
   putUser(plid: string, user: IUserSimple) {
     // return this.HttpClient.put<IUserSimple>("/api/user/"+plid,user);
@@ -77,19 +77,19 @@ export class EndpointServiceService {
     body.set('MAIL', user.MAIL);
     body.set('PSWD', user.PSWD);
 
-    return this.HttpClient.put('/api/user/'+plid, body.toString(), httpOptions);
+    return this.HttpClient.put(this.enpoint+'/api/user/'+plid, body.toString(), httpOptions);
     
   }
   delUser(plid: string) {
-    return this.HttpClient.delete("/api/user/" + plid);
+    return this.HttpClient.delete(this.enpoint+"/api/user/" + plid);
   }
   //---------------------------------------------------------
   //Achivement
   getAllAchivement() {
-    return this.HttpClient.get<Array<Achivement>>("/api/archivement");
+    return this.HttpClient.get<Array<Achivement>>(this.enpoint+"/api/archivement");
   }
   getAchivement(plid: string) {
-    return this.HttpClient.get<Achivement>("/api/archivement/" + plid);
+    return this.HttpClient.get<Achivement>(this.enpoint+"/api/archivement/" + plid);
   }
   putAchivement(achivement: Achivement, id: number) {
     let body = new URLSearchParams();
@@ -99,7 +99,7 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/archivement/' + id, body.toString(), options);
+    return this.HttpClient.put(this.enpoint+'/api/archivement/' + id, body.toString(), options);
   }
   postAchivement(achivement: Achivement) {
     let body = new URLSearchParams();
@@ -109,18 +109,18 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.post('/api/archivement', body.toString(), options);
+    return this.HttpClient.post(this.enpoint+'/api/archivement', body.toString(), options);
   }
   delArchivement(id: number) {
-    return this.HttpClient.delete("/api/archivement/" + id);
+    return this.HttpClient.delete(this.enpoint+"/api/archivement/" + id);
   }
   //---------------------------------------------------------
   //Master achivement
   getAllMasterAchivement() {
-    return this.HttpClient.get<Array<MasterAchivement>>("/api/masterachive");
+    return this.HttpClient.get<Array<MasterAchivement>>(this.enpoint+"/api/masterachive");
   }
   getMasterAchivement(id: number) {
-    return this.HttpClient.get<MasterAchivement>("/api/masterachive" + id);
+    return this.HttpClient.get<MasterAchivement>(this.enpoint+"/api/masterachive" + id);
   }
   putMasterAchivement(MastAch: MasterAchivement, id: number) {
     let body = new URLSearchParams();
@@ -130,7 +130,7 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.put('/api/masterachive/' + id, body.toString(), options);
+    return this.HttpClient.put(this.enpoint+'/api/masterachive/' + id, body.toString(), options);
   }
   postMasterAchivement(MastAch: MasterAchivement) {
     let body = new URLSearchParams();
@@ -140,16 +140,16 @@ export class EndpointServiceService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.HttpClient.post('/api/masterachive', body.toString(), options);
+    return this.HttpClient.post(this.enpoint+'/api/masterachive', body.toString(), options);
 
   }
   delMasterAchivement(id: number) {
-    return this.HttpClient.delete("/api/masterachive/" + id);
+    return this.HttpClient.delete(this.enpoint+"/api/masterachive/" + id);
   }
 
   //---------------------------------------
   //test
   getAllAchivementByUser(plid: string) {
-    return this.HttpClient.get<Array<Achivement>>("/api/archivement/user/" + plid);
+    return this.HttpClient.get<Array<Achivement>>(this.enpoint+"/api/archivement/user/" + plid);
   }
 }

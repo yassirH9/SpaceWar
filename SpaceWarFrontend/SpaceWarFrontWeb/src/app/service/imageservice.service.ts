@@ -5,11 +5,12 @@ import { IImage } from '../models/IImage';
   providedIn: 'root'
 })
 export class ImageserviceService {
+  enpoint:string="https://localhost:443";
 
   constructor(private HttpClient: HttpClient) { }
   
   getImageByUserID(plid: any) {
-    return this.HttpClient.get<IImage>("/api/get/image/user/" + plid);
+    return this.HttpClient.get<IImage>(this.enpoint+"/api/get/image/user/" + plid);
   }
   //---------------------------------------
   putImageByUserID(image: File, plid: any) {
@@ -17,7 +18,7 @@ export class ImageserviceService {
     formData.append('image',image);
     formData.append('user',plid);
 
-    return this.HttpClient.put('/api/put/image/', formData);
+    return this.HttpClient.put(this.enpoint+'/api/put/image/', formData);
   }
   //---------------------------------------
   postImageByUserID(image:File,plid:any){
@@ -25,10 +26,10 @@ export class ImageserviceService {
     formData.append('image',image);
     formData.append('user',plid);
 
-    return this.HttpClient.post('/api/upload/image', formData);
+    return this.HttpClient.post(this.enpoint+'/api/upload/image', formData);
   }
   //---------------------------------------
   deleteImageByUserID(plid:any){
-    return this.HttpClient.delete("/api/del/image/"+plid);
+    return this.HttpClient.delete(this.enpoint+"/api/del/image/"+plid);
   }
 }
