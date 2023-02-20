@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl",
+    "start": "ng serve --proxy-config proxy.conf.json --ssl true --ssl-key ./privkey.key --ssl-cert ./cert.crt",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -28,7 +28,9 @@
     "ngx-permission": "^0.2.1",
     "ngx-permissions": "^14.0.0",
     "ngx-slick-carousel": "^0.6.0",
+    "ngx-socket-io": "^4.4.0",
     "rxjs": "~7.5.0",
+    "socket.io-client": "^4.6.0",
     "sweetalert2": "^11.6.15",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

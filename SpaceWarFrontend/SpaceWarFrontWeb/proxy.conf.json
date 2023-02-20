@@ -1,6 +1,6 @@
 {
-    "/api/auth/*":{
-        "target":"http://localhots:8080",
+    "/ws/*":{
+        "target":"wss://localhots:443",
         "secure": false,
         "logLevel": "debug"
     }

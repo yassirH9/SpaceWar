@@ -1,5 +1,6 @@
 package com.spacewar.controllers;
 
+import com.spacewar.WebSockets.Monitor.MonitorEndpoint;
 import com.spacewar.entity.models.Ranking;
 import com.spacewar.entity.models.Users;
 import com.spacewar.entity.services.impl.RankingService;
@@ -43,19 +44,19 @@ public class RankingController {
         }
         return returned;
     }
-
+    @MonitorEndpoint
     @PostMapping("/ranking")
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void postRanking(Ranking ranking) {
         rankingService.post(ranking);
     }
-
+    @MonitorEndpoint
     @PutMapping("/ranking/{id}")
     @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void putRanking(@PathVariable(value = "id") Long id, Ranking ranking) {
         rankingService.put(ranking, id);
     }
-
+    @MonitorEndpoint
     @DeleteMapping("/ranking/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_MODERATOR')")
     public void deleteRanking(@PathVariable(value = "id") Long id) {
