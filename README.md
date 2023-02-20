@@ -24,6 +24,7 @@
 - [User requirements](#User-requirements)
 - [Technology stack](#Technology-stack)
 - [Technology selection](#Technology-selection)
+- [Type of aprication](#Type-of-application)
 - [Planification](#Planification)
 - [Project conclusion](#Project-conclusion)
 - [External links](#External-links)
@@ -347,6 +348,19 @@ Another reason why you might use Spring Boot instead of Sequelize is the integra
 
 Finally, Spring Boot has a large community and commercial support behind it, which means there is a wealth of resources and support available to help developers troubleshoot and learn more about the framework. This can be especially useful for larger, business-critical projects.
 </p>
+
+## Type of application
+In this section we will explain the different types of applications that exist, whether native, hybrid, PWA and web, with emphasis on the type that corresponds to this project.
+
+-Native apps: These are apps that are developed specifically for a mobile operating system, such as iOS or Android. These applications are usually faster and have a smoother user experience.
+
+-Hybrid applications: These are applications that combine elements of native and web applications. They are created using web technologies (such as HTML, CSS and JavaScript).
+
+-PWA (Progressive Web Apps): These are web applications that behave like native applications and can be used in any modern web browser, without the need for an application store or native container.
+
+-Web applications: These are applications that run in a web browser and are accessed through a URL.
+
+An application that uses Spring as the backend and Angular for the web part is a hybrid application that offers a rich user experience and a powerful and scalable backend.
 
 ## Planification
 <p style="text-align: justify;">
