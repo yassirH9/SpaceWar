@@ -17,6 +17,15 @@ export class ReportServiceService {
   getRReportChart(){
     return this.HttpClient.get(this.enpoint+"/api/report/chart", { responseType: 'blob' });
   }
+  getWSAdminReport(){
+    return this.HttpClient.get(this.enpoint+"/api/report/websockets", { responseType: 'blob' });
+  }
+  getAchivementPlatinum(id:string){
+    return this.HttpClient.get(this.enpoint+"/api/report/platinum/"+id, { responseType: 'blob' });
+  }
+  getAchivementProgess(id:string){
+    return this.HttpClient.get(this.enpoint+"/api/report/achivement/"+id, { responseType: 'blob' });
+  }
   //semd a report by email
   SendReport(email:string){
     return this.HttpClient.get(this.enpoint+"/api/report/send/"+email);

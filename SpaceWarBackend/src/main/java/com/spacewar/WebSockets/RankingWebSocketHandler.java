@@ -36,7 +36,7 @@ public class RankingWebSocketHandler implements WebSocketHandler {
     private static final Logger logger = LoggerFactory.getLogger(RankingWebSocketHandler.class);
 
     //Alacenamiento de sesiones creadas
-    private final List<WebSocketSession> sessionList = new CopyOnWriteArrayList<>();
+    static public final List<WebSocketSession> sessionList = new CopyOnWriteArrayList<>();
 
 
     @Override
@@ -48,7 +48,6 @@ public class RankingWebSocketHandler implements WebSocketHandler {
         sessionList.add(session);
         //envia al usuario recien conectado una lista recien tomada de la base de datos
         session.sendMessage(new TextMessage(toJson(innerConverter())));
-
         //muestra en log el usuario conectado
         logger.info("Nuevo usuario conextado: "+session.getLocalAddress());
     }

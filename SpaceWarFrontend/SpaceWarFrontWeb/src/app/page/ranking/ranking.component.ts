@@ -31,7 +31,7 @@ export class RankingComponent implements OnInit {
     private report: ReportServiceService,
     private mDialog: MatDialog,
   ) { 
-    
+
   }
   ngOnInit(): void {
     //loguea tras recargar los datos cambiados
@@ -111,6 +111,12 @@ export class RankingComponent implements OnInit {
       })
     }
 
+  }
+  DownloadAdminReport() {
+      this.report.getWSAdminReport().subscribe((response) => {
+        const fileURL = URL.createObjectURL(response);
+        window.open(fileURL, '_blank');
+      })
   }
   SendReport(){
     console.log("send email");

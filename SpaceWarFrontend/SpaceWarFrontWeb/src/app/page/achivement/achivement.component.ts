@@ -5,6 +5,7 @@ import { Achivement } from 'src/app/models/Achivement';
 import { MasterAchivement } from 'src/app/models/MasterAchivement';
 import { EndpointServiceService } from 'src/app/service/endpoint-service.service';
 import { RoleserviceService } from 'src/app/service/RolService/roleservice.service';
+import { ReportServiceService } from 'src/app/service/ReportService/report-service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,10 +25,10 @@ export class AchivementComponent {
     private role: RoleserviceService,
     private route: Router,
     private endpoint: EndpointServiceService,
+    private report: ReportServiceService,
   ) {
 
   }
-
   isTogled: boolean = false;
   togledButtonText: string = 'See only unlocked';
   changeVisibleAchivement(){
@@ -170,4 +171,19 @@ export class AchivementComponent {
     }
     return result!;
   }
+
+  DownloadReport() {
+    this.report.getAchivementPlatinum(window.sessionStorage.getItem("user-id")!).subscribe((response) => {
+      const fileURL = URL.createObjectURL(response);
+      window.open(fileURL, '_blank');
+    });
+  }
+  DownloadAchivementsReport() {
+    this.report.getAchivementProgess(window.sessionStorage.getItem("user-id")!).subscribe((response) => {
+      const fileURL = URL.createObjectURL(response);
+      window.open(fileURL, '_blank');
+    });
+  }
+
 }
+
