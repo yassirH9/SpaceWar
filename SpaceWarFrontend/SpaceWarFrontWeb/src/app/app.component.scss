@@ -1,0 +1,17 @@
+.scroll-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    background-color: rgba(217, 217, 217, 0.418);
+    box-shadow: inset 0px 4px 20px 1px rgba(0, 0, 0, 0.25);
+    color: #f2f2f2;
+    text-align: center;
+    border-color: rgba(217, 217, 217, 0.418);
+    border-radius: 100%;
+
+    img{
+        max-width: 2em;
+        max-height: 2em;
+    }
+}

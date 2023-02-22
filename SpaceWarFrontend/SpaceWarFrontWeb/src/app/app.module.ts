@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SendEmailDialogComponent } from './components/send-email-dialog/send-email-dialog.component';
 import { SendEmailDialogChartComponent } from './components/send-email-dialog-chart/send-email-dialog-chart.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { SendEmailDialogChartComponent } from './components/send-email-dialog-ch
     UserDataComponent,
     SendEmailDialogComponent,
     SendEmailDialogChartComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

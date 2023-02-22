@@ -20,4 +20,8 @@ export class AppComponent {
     this.storage.signOut();
     this.role.logout();
   }
+
+  scrollToTop() {
+    document.documentElement.scrollTop = 0;
+  }
 }
